@@ -6,72 +6,105 @@ const Certificates = () => {
     {
       id: 1,
       title: 'Google Analytics Individual Qualification',
-      description: 'Advanced web analytics and data interpretation certification covering GA4, reporting, and data-driven insights.',
+      description: 'Advanced web analytics and data interpretation certification covering GA4, reporting, and data-driven insights for business growth.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center',
       tags: ['Google Analytics', 'Web Analytics', 'Data Analysis', 'Reporting'],
+      issuer: 'Google',
+      date: '2024',
+      credentialId: 'GA-2024-001',
       status: 'Completed'
     },
     {
       id: 2,
-      title: 'SQL for Data Science',
-      description: 'Comprehensive database management and advanced querying techniques for data science applications.',
+      title: 'SQL for Data Science Specialization',
+      description: 'Comprehensive database management and advanced querying techniques for data science applications and business intelligence.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=center',
-      tags: ['SQL', 'Database', 'Data Science', 'Querying'],
+      tags: ['SQL', 'Database', 'Data Science', 'Business Intelligence'],
+      issuer: 'Coursera',
+      date: '2024',
+      credentialId: 'SQL-DS-2024',
       status: 'Completed'
     },
     {
       id: 3,
-      title: 'Python Data Analysis',
-      description: 'Data manipulation and statistical analysis with Python, pandas, and numpy for business insights.',
+      title: 'Python Data Analysis Professional',
+      description: 'Data manipulation and statistical analysis with Python, pandas, and numpy for extracting actionable business insights.',
       image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center',
       tags: ['Python', 'Pandas', 'Data Analysis', 'Statistics'],
+      issuer: 'DataCamp',
+      date: '2023',
+      credentialId: 'PY-DA-2023',
       status: 'Completed'
     },
     {
       id: 4,
       title: 'Product Analytics Fundamentals',
-      description: 'User behavior analysis and product metrics to drive product decisions and growth strategies.',
+      description: 'User behavior analysis and product metrics to drive data-informed product decisions and sustainable growth strategies.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center',
       tags: ['Product Analytics', 'User Behavior', 'Metrics', 'Growth'],
+      issuer: 'Product School',
+      date: '2023',
+      credentialId: 'PA-FUND-2023',
       status: 'Completed'
     },
     {
       id: 5,
-      title: 'Excel Advanced Analytics',
-      description: 'Advanced Excel functions, pivot tables, and data visualization for business analytics.',
+      title: 'Advanced Excel for Business Analytics',
+      description: 'Advanced Excel functions, pivot tables, and data visualization techniques for comprehensive business analytics and reporting.',
       image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop&crop=center',
       tags: ['Excel', 'Pivot Tables', 'Data Visualization', 'Business Analytics'],
+      issuer: 'Microsoft',
+      date: '2023',
+      credentialId: 'EXL-ADV-2023',
       status: 'Completed'
     },
     {
       id: 6,
-      title: 'Digital Marketing Analytics',
-      description: 'Marketing performance measurement and optimization using digital analytics tools and frameworks.',
+      title: 'Digital Marketing Analytics Certificate',
+      description: 'Marketing performance measurement and optimization using digital analytics tools, attribution models, and ROI frameworks.',
       image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&h=400&fit=crop&crop=center',
-      tags: ['Digital Marketing', 'Performance Marketing', 'Analytics', 'Optimization'],
+      tags: ['Digital Marketing', 'Performance Marketing', 'Analytics', 'ROI'],
+      issuer: 'Google Digital Academy',
+      date: '2023',
+      credentialId: 'DMA-2023-456',
       status: 'Completed'
     }
   ];
 
   return (
-    <section id="certificates" className="py-20 md:py-28" style={{ backgroundColor: '#0b0b0b' }}>
+    <section id="certificates" className="py-20 md:py-28" style={{ backgroundColor: '#101010' }}>
       <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8">
+        <motion.div
+          variants={staggerContainer(0.1, 0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="text-center mb-20"
+        >
+          <motion.h2
+            variants={fadeIn("down", 0.1)}
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
+          >
             Certificates & Achievements
-          </h2>
+          </motion.h2>
           
           {/* Gold Divider */}
-          <div className="flex items-center justify-center mb-8">
+          <motion.div
+            variants={fadeIn("up", 0.2)}
+            className="flex items-center justify-center mb-8"
+          >
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
             <div className="mx-4 w-2 h-2 bg-gold rounded-full"></div>
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
-          </div>
+          </motion.div>
           
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center">
+          <motion.p
+            variants={fadeIn("up", 0.3)}
+             className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
+          >
             Continuous learning and professional development in data analysis and product analytics
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       
         <motion.div
           variants={staggerContainer(0.2, 0.1)}
@@ -89,7 +122,13 @@ const Certificates = () => {
             >
               {/* Status Badge */}
               <div className="absolute top-4 right-4 z-20">
-                <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-3 py-1 rounded-full text-xs font-medium">
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  certificate.status === 'Completed' 
+                    ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                    : certificate.status === 'In Progress'
+                    ? 'bg-gold/20 text-gold border border-gold/30'
+                    : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                }`}>
                   {certificate.status}
                 </span>
               </div>
@@ -121,6 +160,22 @@ const Certificates = () => {
                 <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300">
                   {certificate.title}
                 </h3>
+                
+                {/* Certificate Details */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Issuer:</span>
+                    <span className="text-gray-300 font-medium">{certificate.issuer}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Year:</span>
+                    <span className="text-gray-300 font-medium">{certificate.date}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">ID:</span>
+                    <span className="text-gray-300 font-mono text-xs">{certificate.credentialId}</span>
+                  </div>
+                </div>
                 
                 <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                   {certificate.description}
