@@ -18,7 +18,7 @@ const Navbar = () => {
       setScrollProgress(scrollPercent);
 
       // Update active section based on scroll position
-      const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['hero', 'about', 'skills', 'projects', 'certificates', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -39,7 +39,7 @@ const Navbar = () => {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
-    { name: href: '#certificates' },
+    { name: 'Certificates', href: '#certificates' },
     { name: 'Contact', href: '#contact' },
   ];
 
