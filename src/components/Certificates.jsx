@@ -5,56 +5,56 @@ const Certificates = () => {
   const certificates = [
     {
       id: 1,
-      title: 'Google Analytics Individual Qualification',
+      name: 'Google Analytics Individual Qualification',
+      icon: '📊',
       issuer: 'Google',
       date: '2023',
       description: 'Advanced web analytics and data interpretation',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center',
       credentialId: 'GA-2023-001'
     },
     {
       id: 2,
-      title: 'SQL for Data Science',
+      name: 'SQL for Data Science',
+      icon: '🗃️',
       issuer: 'Coursera',
       date: '2023',
       description: 'Database management and advanced querying techniques',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center',
       credentialId: 'SQL-2023-002'
     },
     {
       id: 3,
-      title: 'Python Data Analysis',
+      name: 'Python Data Analysis',
+      icon: '🐍',
       issuer: 'DataCamp',
       date: '2023',
       description: 'Data manipulation and statistical analysis with Python',
-      image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop&crop=center',
       credentialId: 'PY-2023-003'
     },
     {
       id: 4,
-      title: 'Product Analytics Fundamentals',
+      name: 'Product Analytics Fundamentals',
+      icon: '📈',
       issuer: 'Udemy',
       date: '2023',
       description: 'User behavior analysis and product metrics',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center',
       credentialId: 'PA-2023-004'
     },
     {
       id: 5,
-      title: 'Excel Advanced Analytics',
+      name: 'Excel Advanced Analytics',
+      icon: '📋',
       issuer: 'Microsoft',
       date: '2023',
       description: 'Advanced Excel functions and data visualization',
-      image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop&crop=center',
       credentialId: 'EX-2023-005'
     },
     {
       id: 6,
-      title: 'Digital Marketing Analytics',
+      name: 'Digital Marketing Analytics',
+      icon: '🎯',
       issuer: 'Google Digital Garage',
       date: '2023',
       description: 'Marketing performance measurement and optimization',
-      image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&h=300&fit=crop&crop=center',
       credentialId: 'DM-2023-006'
     }
   ];
@@ -108,33 +108,25 @@ const Certificates = () => {
               whileHover={{ y: -10, scale: 1.02 }}
               className="card group cursor-pointer relative overflow-hidden"
             >
-              {/* Certificate Image */}
-              <div className="relative overflow-hidden rounded-lg mb-6">
-                <motion.img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  whileHover={{ scale: 1.1 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Certificate Icon */}
+              <div className="relative mb-6">
+                <motion.div
+                  className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {cert.icon}
+                </motion.div>
                 
-                {/* Overlay content */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="px-4 py-2 bg-gold text-black font-medium rounded-lg hover:bg-gold-light transition-colors duration-300"
-                  >
-                    View Certificate
-                  </motion.button>
-                </div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
               </div>
 
               {/* Certificate Content */}
               <div className="space-y-4">
                 <div className="flex items-start justify-between">
                   <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300 flex-1">
-                    {cert.title}
+                    {cert.name}
                   </h3>
                   <span className="text-gold text-sm font-medium ml-2">
                     {cert.date}
@@ -152,7 +144,7 @@ const Certificates = () => {
                 {/* Credential ID */}
                 <div className="pt-2 border-t border-gray-700">
                   <p className="text-xs text-gray-500">
-                    Credential ID: <span className="text-gray-400 font-mono">{cert.credentialId}</span>
+                    ID: <span className="text-gray-400 font-mono">{cert.credentialId}</span>
                   </p>
                 </div>
               </div>
@@ -163,7 +155,7 @@ const Certificates = () => {
           ))}
         </motion.div>
 
-        {/* Statistics */}
+        {/* Additional Achievements */}
         <motion.div
           variants={fadeIn("up", 0.5)}
           initial="hidden"
@@ -171,32 +163,42 @@ const Certificates = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {[
-              { number: '6+', label: 'Certificates' },
-              { number: '3+', label: 'Platforms' },
-              { number: '50+', label: 'Study Hours' },
-              { number: '2023', label: 'Latest Year' }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <motion.h3
-                  className="text-3xl md:text-4xl font-bold text-gold mb-2"
-                  whileHover={{ scale: 1.1 }}
+          <motion.div
+            className="glassmorphism rounded-2xl p-8 max-w-4xl mx-auto"
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-2xl font-heading font-semibold text-white mb-8">
+              Learning Statistics
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+              {[
+                { number: '6+', label: 'Certificates' },
+                { number: '4', label: 'Platforms' },
+                { number: '100+', label: 'Study Hours' },
+                { number: '2023', label: 'Latest Year' }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-3 bg-dark-gray/50 rounded-lg border border-gray-700 hover:border-gold/50 transition-colors duration-300"
                 >
-                  {stat.number}
-                </motion.h3>
-                <p className="text-gray-400 text-sm uppercase tracking-wider">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+                  <div className="text-2xl font-bold text-gold mb-1">{stat.number}</div>
+                  <span className="text-gray-300 text-sm font-medium">{stat.label}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="relative">
+              <div className="absolute top-0 left-4 text-gold text-6xl opacity-30">"</div>
+              <blockquote className="text-gray-300 italic text-lg leading-relaxed ml-8">
+                Continuous learning is the key to staying relevant in the ever-evolving world of data analytics.
+              </blockquote>
+              <div className="absolute bottom-4 right-4 text-gold text-4xl opacity-50 rotate-180">"</div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
