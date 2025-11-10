@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { fadeIn, staggerContainer } from '../utils/motion';
+import { fadeIn, fadeInFast, staggerContainer } from '../utils/motion';
 
 const Skills = () => {
   const skills = [
@@ -77,7 +77,7 @@ const Skills = () => {
         </motion.div>
       
         <motion.div
-          variants={staggerContainer(0.2, 0.1)}
+          variants={staggerContainer(0.05, 0.02)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
@@ -86,22 +86,15 @@ const Skills = () => {
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              variants={fadeIn("up", index * 0.1)}
+              variants={fadeInFast("up", index * 0.02)}
               whileHover={{ y: -10, scale: 1.02 }}
               className="card group cursor-pointer relative overflow-hidden"
             >
               {/* Skill Icon */}
               <div className="relative mb-6">
-                <motion.div
-                  className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
+                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {skill.icon}
-                </motion.div>
-                
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                </div>
               </div>
 
               {/* Skill Content */}
@@ -116,12 +109,7 @@ const Skills = () => {
 
                 {/* Progress indicator */}
                 <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                  <motion.div
-                    className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "85%" }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                  />
+                  <div className={`h-full bg-gradient-to-r ${skill.color} rounded-full w-[85%]`} />
                 </div>
               </div>
 
