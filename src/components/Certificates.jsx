@@ -60,8 +60,16 @@ const Certificates = () => {
   ];
 
   return (
-      <section id="certificates" className="min-h-screen py-20 md:py-28" style={{ backgroundColor: '#0b0b0b' }}>
-        <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
+      <motion.section 
+        id="certificates" 
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.1 }}
+        className="relative w-full min-h-screen overflow-visible py-20 md:py-28" 
+        style={{ backgroundColor: '#0b0b0b' }}
+      >
+        <div className="container-custom p-6 md:px-20 relative z-10">
        <motion.div
             variants={staggerContainer(0.1, 0.1)}
             initial="hidden"
@@ -71,7 +79,7 @@ const Certificates = () => {
           >
           <motion.h2
             variants={fadeIn("down", 0.1)}
-            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8 text-center md:text-left"
           >
             Certificates & Achievements
           </motion.h2>
@@ -98,8 +106,8 @@ const Certificates = () => {
           variants={staggerContainer(0.1, 0.2)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          viewport={{ once: false, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full overflow-visible"
         >
           {certificates.map((cert, index) => (
             <motion.div
@@ -209,7 +217,7 @@ const Certificates = () => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

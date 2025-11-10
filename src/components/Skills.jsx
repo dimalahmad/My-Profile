@@ -42,7 +42,15 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="min-h-screen py-20 md:py-28 relative" style={{ backgroundColor: '#0c0c0c' }}>
+    <motion.section 
+      id="skills" 
+      variants={fadeIn("up", 0.2)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.1 }}
+      className="relative w-full min-h-screen overflow-visible py-20 md:py-28" 
+      style={{ backgroundColor: '#0c0c0c' }}
+    >
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -63,7 +71,7 @@ const Skills = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 px-6 md:px-12 lg:px-24">
+      <div className="container-custom relative z-10 p-6 md:px-20">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
@@ -73,7 +81,7 @@ const Skills = () => {
         >
           <motion.h2
             variants={fadeIn("down", 0.1)}
-            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8 text-center md:text-left"
           >
             Skills & Expertise
           </motion.h2>
@@ -100,8 +108,8 @@ const Skills = () => {
           variants={staggerContainer(0.1, 0.2)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          viewport={{ once: false, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 w-full overflow-visible"
         >
           {skills.map((skill, index) => (
             <motion.div
@@ -168,8 +176,8 @@ const Skills = () => {
           variants={fadeIn("up", 0.5)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="text-center"
+          viewport={{ once: false, amount: 0.1 }}
+          className="text-center w-full overflow-visible"
         >
           <motion.div
             className="glassmorphism rounded-2xl p-8 max-w-4xl mx-auto"
@@ -229,7 +237,7 @@ const Skills = () => {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
