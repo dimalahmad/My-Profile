@@ -1,7 +1,32 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer } from '../utils/motion';
 
 const About = () => {
+  const [age, setAge] = useState('');
+
+  // Calculate real-time age
+  useEffect(() => {
+    const calculateAge = () => {
+      const birthDate = new Date('2006-01-29'); // January 29, 2006
+      const now = new Date();
+      
+      const diffTime = Math.abs(now - birthDate);
+      const years = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+      const months = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+      const days = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+      
+      setAge(`${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes`);
+    };
+
+    calculateAge();
+    const interval = setInterval(calculateAge, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
   const highlights = [
     {
       icon: '📊',
@@ -127,9 +152,51 @@ const About = () => {
                   </p>
                 </div>
 
-                {/* Personal Tags */}
+                {/* Educational Background */}
+                <motion.div
+                  variants={fadeIn("up", 0.4)}
+                  className="border-t border-gold/20 pt-6"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">🎓</span>
+                      <div>
+                        <h4 className="text-gold font-semibold">Undergraduate Software Engineering Student</h4>
+                        <p className="text-gray-400 text-sm">Universitas Gadjah Mada (UGM)</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed ml-11">
+                      My passion lies in the fields of programming, data analysis, and engaging in research and exploration.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Real-time Age */}
                 <motion.div
                   variants={fadeIn("up", 0.5)}
+                  className="border-t border-gold/20 pt-6"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">⏳</span>
+                    <div>
+                      <h4 className="text-gold font-semibold">Current Age</h4>
+                      <motion.p 
+                        className="text-gold-light text-sm font-mono"
+                        key={age} // Re-animate when age changes
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {age}
+                      </motion.p>
+                      <p className="text-gray-500 text-xs">Born: January 29, 2006 • Updates every minute</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Personal Tags */}
+                <motion.div
+                  variants={fadeIn("up", 0.6)}
                   className="flex flex-wrap gap-3 pt-6"
                 >
                   {[
