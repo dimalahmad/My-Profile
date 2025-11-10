@@ -161,22 +161,6 @@ const Certificates = () => {
                   {certificate.title}
                 </h3>
                 
-                {/* Certificate Details */}
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500">Issuer:</span>
-                    <span className="text-gray-300 font-medium">{certificate.issuer}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500">Year:</span>
-                    <span className="text-gray-300 font-medium">{certificate.date}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500">ID:</span>
-                    <span className="text-gray-300 font-mono text-xs">{certificate.credentialId}</span>
-                  </div>
-                </div>
-                
                 <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                   {certificate.description}
                 </p>
