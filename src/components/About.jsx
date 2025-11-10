@@ -36,7 +36,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
+    <section id="about" className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -57,7 +57,7 @@ const About = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 py-20">
+      <div className="container-custom relative z-10 py-20 px-6 md:px-12 lg:px-24">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -66,9 +66,12 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-6xl md:text-7xl font-heading font-bold text-gradient-premium mb-6">
+          <motion.h2
+            variants={fadeIn("down", 0.1)}
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
+          >
             About Me
-          </h2>
+          </motion.h2>
           
           {/* Gold Divider */}
           <div className="flex items-center justify-center">
@@ -79,7 +82,7 @@ const About = () => {
         </motion.div>
 
         {/* Two Column Layout - Mobile: Photo top, Text bottom */}
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Left Column - Circular Profile Image with Glass Effect */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}

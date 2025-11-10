@@ -42,7 +42,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="min-h-screen section-padding relative overflow-hidden" style={{ backgroundColor: '#0c0c0c' }}>
+    <section id="skills" className="min-h-screen py-20 md:py-28 relative" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -63,7 +63,7 @@ const Skills = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 p-4 md:p-8">
+      <div className="container-custom relative z-10 px-6 md:px-12 lg:px-24">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
@@ -90,7 +90,7 @@ const Skills = () => {
           
           <motion.p
             variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
           >
             Technologies and tools I use to transform data into actionable insights
           </motion.p>

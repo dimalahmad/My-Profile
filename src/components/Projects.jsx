@@ -30,8 +30,8 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="section-padding" style={{ backgroundColor: '#101010' }}>
-      <div className="container-custom p-4 md:p-8">
+    <section id="projects" className="py-20 md:py-28" style={{ backgroundColor: '#101010' }}>
+      <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
@@ -58,7 +58,7 @@ const Projects = () => {
           
           <motion.p
             variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+             className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
           >
             Showcasing my journey in data analysis and product insights
           </motion.p>

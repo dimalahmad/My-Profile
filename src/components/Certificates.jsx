@@ -60,15 +60,15 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="section-padding" style={{ backgroundColor: '#0b0b0b' }}>
-      <div className="container-custom p-4 md:p-8">
-      <motion.div
-          variants={staggerContainer(0.1, 0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="text-center mb-20"
-        >
+      <section id="certificates" className="min-h-screen py-20 md:py-28" style={{ backgroundColor: '#0b0b0b' }}>
+        <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
+       <motion.div
+            variants={staggerContainer(0.1, 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="text-center mb-20"
+          >
           <motion.h2
             variants={fadeIn("down", 0.1)}
             className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
@@ -88,7 +88,7 @@ const Certificates = () => {
           
           <motion.p
             variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+             className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
           >
             Continuous learning and professional development in data analysis and product analytics
           </motion.p>

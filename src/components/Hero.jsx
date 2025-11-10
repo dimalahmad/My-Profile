@@ -68,13 +68,13 @@ const Hero = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-20">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-8 text-center md:text-left"
+            className="space-y-8 text-center lg:text-left px-6 lg:px-0"
           >
             {/* Static Hero Text */}
             <motion.div
@@ -138,7 +138,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 justify-center lg:justify-start"
             >
               <motion.button
                 onClick={scrollToProjects}
@@ -181,7 +181,7 @@ const Hero = () => {
               scale: showProfile ? 1 : 0.8 
             }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end mb-8 lg:mb-0"
           >
             <div className="coin-container">
               <div className="coin">

@@ -60,8 +60,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding" style={{ backgroundColor: '#111111' }}>
-      <div className="container-custom p-4 md:p-8">
+      <section id="contact" className="py-20 md:py-28" style={{ backgroundColor: '#111111' }}>
+        <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
       <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
@@ -88,7 +88,7 @@ const Contact = () => {
           
           <motion.p
             variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+             className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
           >
             Ready to turn data into insights? Let's discuss how we can work together to drive product success.
           </motion.p>
