@@ -4,58 +4,40 @@ import { fadeIn, staggerContainer } from '../utils/motion';
 const Certificates = () => {
   const certificates = [
     {
-      id: 1,
       name: 'Google Analytics Individual Qualification',
       icon: '📊',
-      issuer: 'Google',
-      date: '2023',
       description: 'Advanced web analytics and data interpretation',
-      credentialId: 'GA-2023-001'
+      color: 'from-blue-500 to-blue-600'
     },
     {
-      id: 2,
       name: 'SQL for Data Science',
       icon: '🗃️',
-      issuer: 'Coursera',
-      date: '2023',
       description: 'Database management and advanced querying techniques',
-      credentialId: 'SQL-2023-002'
+      color: 'from-green-500 to-green-600'
     },
     {
-      id: 3,
       name: 'Python Data Analysis',
       icon: '🐍',
-      issuer: 'DataCamp',
-      date: '2023',
       description: 'Data manipulation and statistical analysis with Python',
-      credentialId: 'PY-2023-003'
+      color: 'from-orange-500 to-orange-600'
     },
     {
-      id: 4,
       name: 'Product Analytics Fundamentals',
       icon: '📈',
-      issuer: 'Udemy',
-      date: '2023',
       description: 'User behavior analysis and product metrics',
-      credentialId: 'PA-2023-004'
+      color: 'from-yellow-500 to-yellow-600'
     },
     {
-      id: 5,
       name: 'Excel Advanced Analytics',
       icon: '📋',
-      issuer: 'Microsoft',
-      date: '2023',
       description: 'Advanced Excel functions and data visualization',
-      credentialId: 'EX-2023-005'
+      color: 'from-purple-500 to-purple-600'
     },
     {
-      id: 6,
       name: 'Digital Marketing Analytics',
       icon: '🎯',
-      issuer: 'Google Digital Garage',
-      date: '2023',
       description: 'Marketing performance measurement and optimization',
-      credentialId: 'DM-2023-006'
+      color: 'from-gray-500 to-gray-600'
     }
   ];
 
@@ -101,9 +83,9 @@ const Certificates = () => {
           viewport={{ once: true, amount: 0.25 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {certificates.map((cert, index) => (
+          {certificates.map((certificate, index) => (
             <motion.div
-              key={cert.id}
+              key={certificate.name}
               variants={fadeIn("up", index * 0.1)}
               whileHover={{ y: -10, scale: 1.02 }}
               className="card group cursor-pointer relative overflow-hidden"
@@ -115,7 +97,7 @@ const Certificates = () => {
                   whileHover={{ rotate: [0, -10, 10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  {cert.icon}
+                  {certificate.icon}
                 </motion.div>
                 
                 {/* Glow effect */}
@@ -124,28 +106,22 @@ const Certificates = () => {
 
               {/* Certificate Content */}
               <div className="space-y-4">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300 flex-1">
-                    {cert.name}
-                  </h3>
-                  <span className="text-gold text-sm font-medium ml-2">
-                    {cert.date}
-                  </span>
-                </div>
-                
-                <p className="text-gold-light font-medium text-sm">
-                  {cert.issuer}
-                </p>
+                <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300">
+                  {certificate.name}
+                </h3>
                 
                 <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                  {cert.description}
+                  {certificate.description}
                 </p>
 
-                {/* Credential ID */}
-                <div className="pt-2 border-t border-gray-700">
-                  <p className="text-xs text-gray-500">
-                    ID: <span className="text-gray-400 font-mono">{cert.credentialId}</span>
-                  </p>
+                {/* Progress indicator */}
+                <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className={`h-full bg-gradient-to-r ${certificate.color} rounded-full`}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    transition={{ duration: 1, delay: index * 0.1 }}
+                  />
                 </div>
               </div>
 
@@ -155,7 +131,7 @@ const Certificates = () => {
           ))}
         </motion.div>
 
-        {/* Additional Achievements */}
+        {/* Additional Certificates */}
         <motion.div
           variants={fadeIn("up", 0.5)}
           initial="hidden"
@@ -168,25 +144,19 @@ const Certificates = () => {
             whileHover={{ scale: 1.02 }}
           >
             <h3 className="text-2xl font-heading font-semibold text-white mb-8">
-              Learning Statistics
+              Learning Achievements
             </h3>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              {[
-                { number: '6+', label: 'Certificates' },
-                { number: '4', label: 'Platforms' },
-                { number: '100+', label: 'Study Hours' },
-                { number: '2023', label: 'Latest Year' }
-              ].map((stat, index) => (
+              {['Google', 'Coursera', 'DataCamp', 'Udemy', 'Microsoft', 'Kaggle', 'LinkedIn', 'Udacity'].map((platform, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={platform}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="p-3 bg-dark-gray/50 rounded-lg border border-gray-700 hover:border-gold/50 transition-colors duration-300"
                 >
-                  <div className="text-2xl font-bold text-gold mb-1">{stat.number}</div>
-                  <span className="text-gray-300 text-sm font-medium">{stat.label}</span>
+                  <span className="text-gray-300 font-medium">{platform}</span>
                 </motion.div>
               ))}
             </div>
