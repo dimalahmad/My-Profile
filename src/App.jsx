@@ -1,57 +1,85 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Certificates from './components/Certificates';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-center p-8 bg-white rounded-2xl shadow-xl max-w-md mx-4"
-      >
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl font-bold text-gray-800 mb-4"
-        >
-          My Portfolio
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-gray-600 mb-6"
-        >
-          Project setup complete! Ready for development and deployment.
-        </motion.p>
-        
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.3, type: "spring" }}
-          className="flex justify-center space-x-4"
-        >
-          <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-        </motion.div>
-        
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main>
+        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="mt-6 text-sm text-gray-500"
+          transition={{ duration: 0.8 }}
         >
-          <p>✅ Vite + React</p>
-          <p>✅ Tailwind CSS</p>
-          <p>✅ Framer Motion</p>
-          <p>✅ Vercel Ready</p>
+          <Hero />
         </motion.div>
-      </motion.div>
+
+        {/* About Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <About />
+        </motion.div>
+
+        {/* Skills Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Skills />
+        </motion.div>
+
+        {/* Projects Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Projects />
+        </motion.div>
+
+        {/* Certificates Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Certificates />
+        </motion.div>
+
+        {/* Contact Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Contact />
+        </motion.div>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

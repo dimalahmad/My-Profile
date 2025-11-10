@@ -1,29 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
   
   body {
-    @apply antialiased;
+    @apply antialiased bg-black text-gray-300 overflow-x-hidden;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f4d03f;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-gold hover:bg-gold-light text-black font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-6 border border-gray-100;
+    @apply bg-dark-gray rounded-xl p-6 border border-gray-800 transition-all duration-300;
+  }
+  
+  .card:hover {
+    @apply border-gold;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.1);
+  }
+  
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 26, 26, 0.8);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  }
+  
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  
+  .glow-gold-hover:hover {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
   }
 }
