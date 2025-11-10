@@ -44,40 +44,25 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 md:py-28" style={{ backgroundColor: '#0c0c0c' }}>
       <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
-        <motion.div
-          variants={staggerContainer(0.1, 0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="text-center mb-20"
-        >
-          <motion.h2
-            variants={fadeIn("down", 0.1)}
-            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
-          >
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8">
             Skills & Expertise
-          </motion.h2>
+          </h2>
           
           {/* Gold Divider */}
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            className="flex items-center justify-center mb-8"
-          >
+          <div className="flex items-center justify-center mb-8">
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
             <div className="mx-4 w-2 h-2 bg-gold rounded-full"></div>
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
-          </motion.div>
+          </div>
           
-          <motion.p
-            variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
-          >
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center">
             Technologies and tools I use to transform data into actionable insights
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       
         <motion.div
-          variants={staggerContainer(0.05, 0.02)}
+          variants={staggerContainer(0.1, 0.05)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}

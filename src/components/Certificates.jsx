@@ -1,144 +1,144 @@
 import { motion } from 'framer-motion';
-import { fadeIn, fadeInFast, staggerContainer } from '../utils/motion';
+import { fadeIn, staggerContainer } from '../utils/motion';
 
 const Certificates = () => {
   const certificates = [
     {
       id: 1,
-      name: 'Google Analytics Individual Qualification',
-      icon: '📊',
-      issuer: 'Google',
-      date: '2023',
-      description: 'Advanced web analytics and data interpretation',
-      credentialId: 'GA-2023-001'
+      title: 'Google Analytics Individual Qualification',
+      description: 'Advanced web analytics and data interpretation certification covering GA4, reporting, and data-driven insights.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center',
+      tags: ['Google Analytics', 'Web Analytics', 'Data Analysis', 'Reporting'],
+      status: 'Completed'
     },
     {
       id: 2,
-      name: 'SQL for Data Science',
-      icon: '🗃️',
-      issuer: 'Coursera',
-      date: '2023',
-      description: 'Database management and advanced querying techniques',
-      credentialId: 'SQL-2023-002'
+      title: 'SQL for Data Science',
+      description: 'Comprehensive database management and advanced querying techniques for data science applications.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=center',
+      tags: ['SQL', 'Database', 'Data Science', 'Querying'],
+      status: 'Completed'
     },
     {
       id: 3,
-      name: 'Python Data Analysis',
-      icon: '🐍',
-      issuer: 'DataCamp',
-      date: '2023',
-      description: 'Data manipulation and statistical analysis with Python',
-      credentialId: 'PY-2023-003'
+      title: 'Python Data Analysis',
+      description: 'Data manipulation and statistical analysis with Python, pandas, and numpy for business insights.',
+      image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center',
+      tags: ['Python', 'Pandas', 'Data Analysis', 'Statistics'],
+      status: 'Completed'
     },
     {
       id: 4,
-      name: 'Product Analytics Fundamentals',
-      icon: '📈',
-      issuer: 'Udemy',
-      date: '2023',
-      description: 'User behavior analysis and product metrics',
-      credentialId: 'PA-2023-004'
+      title: 'Product Analytics Fundamentals',
+      description: 'User behavior analysis and product metrics to drive product decisions and growth strategies.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center',
+      tags: ['Product Analytics', 'User Behavior', 'Metrics', 'Growth'],
+      status: 'Completed'
     },
     {
       id: 5,
-      name: 'Excel Advanced Analytics',
-      icon: '📋',
-      issuer: 'Microsoft',
-      date: '2023',
-      description: 'Advanced Excel functions and data visualization',
-      credentialId: 'EX-2023-005'
+      title: 'Excel Advanced Analytics',
+      description: 'Advanced Excel functions, pivot tables, and data visualization for business analytics.',
+      image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop&crop=center',
+      tags: ['Excel', 'Pivot Tables', 'Data Visualization', 'Business Analytics'],
+      status: 'Completed'
     },
     {
       id: 6,
-      name: 'Digital Marketing Analytics',
-      icon: '🎯',
-      issuer: 'Google Digital Garage',
-      date: '2023',
-      description: 'Marketing performance measurement and optimization',
-      credentialId: 'DM-2023-006'
+      title: 'Digital Marketing Analytics',
+      description: 'Marketing performance measurement and optimization using digital analytics tools and frameworks.',
+      image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&h=400&fit=crop&crop=center',
+      tags: ['Digital Marketing', 'Performance Marketing', 'Analytics', 'Optimization'],
+      status: 'Completed'
     }
   ];
 
   return (
     <section id="certificates" className="py-20 md:py-28" style={{ backgroundColor: '#0b0b0b' }}>
       <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
-        <motion.div
-          variants={staggerContainer(0.1, 0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="text-center mb-20"
-        >
-          <motion.h2
-            variants={fadeIn("down", 0.1)}
-            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
-          >
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8">
             Certificates & Achievements
-          </motion.h2>
+          </h2>
           
           {/* Gold Divider */}
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            className="flex items-center justify-center mb-8"
-          >
+          <div className="flex items-center justify-center mb-8">
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
             <div className="mx-4 w-2 h-2 bg-gold rounded-full"></div>
             <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-32"></div>
-          </motion.div>
+          </div>
           
-          <motion.p
-            variants={fadeIn("up", 0.3)}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center"
-          >
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed text-center">
             Continuous learning and professional development in data analysis and product analytics
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       
-         <motion.div
-           variants={staggerContainer(0.05, 0.02)}
-           initial="hidden"
-           whileInView="show"
-           viewport={{ once: true, amount: 0.25 }}
-           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-         >
-          {certificates.map((cert, index) => (
+        <motion.div
+          variants={staggerContainer(0.2, 0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {certificates.map((certificate, index) => (
             <motion.div
-              key={cert.id}
-              variants={fadeInFast("up", index * 0.02)}
+              key={certificate.id}
+              variants={fadeIn("up", index * 0.1)}
               whileHover={{ y: -10, scale: 1.02 }}
               className="card group cursor-pointer relative overflow-hidden"
             >
-               {/* Certificate Icon */}
-               <div className="relative mb-6">
-                 <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                   {cert.icon}
-                 </div>
-               </div>
+              {/* Status Badge */}
+              <div className="absolute top-4 right-4 z-20">
+                <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-3 py-1 rounded-full text-xs font-medium">
+                  {certificate.status}
+                </span>
+              </div>
+
+              {/* Certificate Image */}
+              <div className="relative overflow-hidden rounded-lg mb-6">
+                <motion.img
+                  src={certificate.image}
+                  alt={certificate.title}
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                  whileHover={{ scale: 1.1 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Overlay content */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 bg-gold text-black font-medium rounded-lg hover:bg-gold-light transition-colors duration-300"
+                  >
+                    View Certificate
+                  </motion.button>
+                </div>
+              </div>
 
               {/* Certificate Content */}
               <div className="space-y-4">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300 flex-1">
-                    {cert.name}
-                  </h3>
-                  <span className="text-gold text-sm font-medium ml-2">
-                    {cert.date}
-                  </span>
-                </div>
-                
-                <p className="text-gold-light font-medium text-sm">
-                  {cert.issuer}
-                </p>
+                <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300">
+                  {certificate.title}
+                </h3>
                 
                 <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                  {cert.description}
+                  {certificate.description}
                 </p>
 
-                {/* Credential ID */}
-                <div className="pt-2 border-t border-gray-700">
-                  <p className="text-xs text-gray-500">
-                    ID: <span className="text-gray-400 font-mono">{cert.credentialId}</span>
-                  </p>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {certificate.tags.map((tag, tagIndex) => (
+                    <motion.span
+                      key={tag}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: tagIndex * 0.1 }}
+                      className="px-3 py-1 bg-dark-gray border border-gray-700 rounded-full text-xs text-gray-300 group-hover:border-gold/50 transition-colors duration-300"
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
                 </div>
               </div>
 
@@ -148,7 +148,7 @@ const Certificates = () => {
           ))}
         </motion.div>
 
-        {/* Additional Achievements */}
+        {/* Call to Action */}
         <motion.div
           variants={fadeIn("up", 0.5)}
           initial="hidden"
@@ -156,42 +156,19 @@ const Certificates = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <motion.div
-            className="glassmorphism rounded-2xl p-8 max-w-4xl mx-auto"
-            whileHover={{ scale: 1.02 }}
+          <p className="text-gray-400 mb-6">
+            Want to learn more about my certifications?
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 rounded-lg font-medium"
+            onClick={() => {
+              document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+            }}
           >
-            <h3 className="text-2xl font-heading font-semibold text-white mb-8">
-              Learning Statistics
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              {[
-                { number: '6+', label: 'Certificates' },
-                { number: '4', label: 'Platforms' },
-                { number: '100+', label: 'Study Hours' },
-                { number: '2023', label: 'Latest Year' }
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-3 bg-dark-gray/50 rounded-lg border border-gray-700 hover:border-gold/50 transition-colors duration-300"
-                >
-                  <div className="text-2xl font-bold text-gold mb-1">{stat.number}</div>
-                  <span className="text-gray-300 text-sm font-medium">{stat.label}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="relative">
-              <div className="absolute top-0 left-4 text-gold text-6xl opacity-30">"</div>
-              <blockquote className="text-gray-300 italic text-lg leading-relaxed ml-8">
-                Continuous learning is the key to staying relevant in the ever-evolving world of data analytics.
-              </blockquote>
-              <div className="absolute bottom-4 right-4 text-gold text-4xl opacity-50 rotate-180">"</div>
-            </div>
-          </motion.div>
+            Get In Touch
+          </motion.button>
         </motion.div>
       </div>
     </section>
