@@ -42,7 +42,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="min-h-screen section-padding bg-black relative overflow-hidden">
+    <section id="skills" className="min-h-screen section-padding relative overflow-hidden" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -63,7 +63,7 @@ const Skills = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 p-4 md:p-8">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"

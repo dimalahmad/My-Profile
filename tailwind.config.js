@@ -67,6 +67,8 @@ export default {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'hero-pattern': 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(26,26,26,0.8) 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #d4af37, #b8860b)',
+        'about-gradient': 'linear-gradient(135deg, #000000 0%, #111111 100%)',
       },
     },
   },
