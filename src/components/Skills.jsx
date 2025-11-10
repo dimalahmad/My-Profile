@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { fadeIn, staggerContainer, bounceIn } from '../utils/motion';
+import { fadeIn, staggerContainer } from '../utils/motion';
 
 const Skills = () => {
   const skills = [
@@ -42,36 +42,8 @@ const Skills = () => {
   ];
 
   return (
-    <motion.section 
-      id="skills" 
-      variants={fadeIn("up", 0.2)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.1 }}
-      className="relative w-full min-h-screen overflow-visible py-20 md:py-28" 
-      style={{ backgroundColor: '#0c0c0c' }}
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/3 right-20 w-72 h-72 bg-gold/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 left-20 w-96 h-96 bg-gold/3 rounded-full blur-3xl"
-          animate={{
-            scale: [1.3, 1, 1.3],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
-        />
-      </div>
-
-      <div className="container-custom relative z-10 p-6 md:px-20">
+    <section id="skills" className="py-20 md:py-28" style={{ backgroundColor: '#0c0c0c' }}>
+      <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
@@ -81,7 +53,7 @@ const Skills = () => {
         >
           <motion.h2
             variants={fadeIn("down", 0.1)}
-            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8 text-center md:text-left"
+            className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-gradient-premium mb-8"
           >
             Skills & Expertise
           </motion.h2>
@@ -103,70 +75,58 @@ const Skills = () => {
             Technologies and tools I use to transform data into actionable insights
           </motion.p>
         </motion.div>
-
+      
         <motion.div
-          variants={staggerContainer(0.1, 0.2)}
+          variants={staggerContainer(0.2, 0.1)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 w-full overflow-visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              variants={bounceIn(index * 0.1)}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                y: -10
-              }}
-              className="glassmorphism rounded-2xl p-8 group relative overflow-hidden cursor-pointer"
+              variants={fadeIn("up", index * 0.1)}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="card group cursor-pointer relative overflow-hidden"
             >
-              {/* Background gradient on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              
-              <div className="relative z-10 text-center space-y-6">
-                {/* Icon */}
+              {/* Skill Icon */}
+              <div className="relative mb-6">
                 <motion.div
-                  whileHover={{ 
-                    rotate: 360, 
-                    scale: 1.2 
-                  }}
+                  className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
                   transition={{ duration: 0.5 }}
-                  className="text-6xl mb-4 group-hover:drop-shadow-lg"
                 >
                   {skill.icon}
                 </motion.div>
+                
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+              </div>
 
-                {/* Skill Name */}
-                <h3 className="text-2xl font-heading font-semibold text-white group-hover:text-gold transition-colors duration-300">
+              {/* Skill Content */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-white group-hover:text-gold transition-colors duration-300">
                   {skill.name}
                 </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
+                
+                <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                   {skill.description}
                 </p>
 
-                {/* Decorative Element */}
-                <motion.div
-                  className="w-12 h-1 bg-gradient-to-r from-gold to-gold-light mx-auto rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+                {/* Progress indicator */}
+                <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "85%" }}
+                    transition={{ duration: 1, delay: index * 0.1 }}
+                  />
+                </div>
               </div>
 
-              {/* Hover border effect */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gold/30 transition-all duration-300"></div>
-              
-              {/* Glow effect */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  boxShadow: '0 0 30px rgba(212, 175, 55, 0.2)'
-                }}
-              />
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>
@@ -176,68 +136,42 @@ const Skills = () => {
           variants={fadeIn("up", 0.5)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-          className="text-center w-full overflow-visible"
+          viewport={{ once: true }}
+          className="text-center mt-16"
         >
           <motion.div
             className="glassmorphism rounded-2xl p-8 max-w-4xl mx-auto"
             whileHover={{ scale: 1.02 }}
           >
             <h3 className="text-2xl font-heading font-semibold text-white mb-8">
-              Also Familiar With
+              Additional Skills & Tools
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                { name: 'Tableau', icon: '📊' },
-                { name: 'Power BI', icon: '📈' },
-                { name: 'R', icon: '📋' },
-                { name: 'JavaScript', icon: '⚡' },
-                { name: 'Git', icon: '🔧' },
-                { name: 'Jira', icon: '📋' },
-                { name: 'Slack', icon: '💬' },
-                { name: 'Miro', icon: '🎨' }
-              ].map((tool, index) => (
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+              {['Tableau', 'Power BI', 'R', 'JavaScript', 'Git', 'Jupyter', 'Pandas', 'NumPy'].map((tool, index) => (
                 <motion.div
-                  key={tool.name}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    y: -5,
-                    boxShadow: '0 10px 25px rgba(212, 175, 55, 0.2)'
-                  }}
-                  className="flex items-center space-x-2 px-6 py-3 glassmorphism rounded-full text-sm text-gray-300 hover:text-gold transition-all duration-300 cursor-default border border-gold/20 hover:border-gold/50"
+                  key={tool}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-3 bg-dark-gray/50 rounded-lg border border-gray-700 hover:border-gold/50 transition-colors duration-300"
                 >
-                  <span className="text-lg">{tool.icon}</span>
-                  <span>{tool.name}</span>
+                  <span className="text-gray-300 font-medium">{tool}</span>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
 
-        {/* Skills Philosophy */}
-        <motion.div
-          variants={fadeIn("up", 0.6)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <motion.div
-            className="glassmorphism rounded-2xl p-8 max-w-3xl mx-auto border-l-4 border-gold relative"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="absolute top-4 left-4 text-gold text-4xl opacity-50">"</div>
-            <blockquote className="text-gray-300 italic text-lg leading-relaxed ml-8">
-              The best insights come from combining the right tools with curious thinking and collaborative spirit.
-            </blockquote>
-            <div className="absolute bottom-4 right-4 text-gold text-4xl opacity-50 rotate-180">"</div>
+            <div className="relative">
+              <div className="absolute top-0 left-4 text-gold text-6xl opacity-30">"</div>
+              <blockquote className="text-gray-300 italic text-lg leading-relaxed ml-8">
+                The best insights come from combining the right tools with curious thinking and collaborative spirit.
+              </blockquote>
+              <div className="absolute bottom-4 right-4 text-gold text-4xl opacity-50 rotate-180">"</div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
