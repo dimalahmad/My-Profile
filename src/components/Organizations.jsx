@@ -22,15 +22,14 @@ const Organizations = () => {
       description: 'Leading initiatives to analyze and advocate for academic policies, conducting in-depth research on campus policies, formulating strategic recommendations, and organizing discussions to raise student awareness.',
       skills: ['Strategic Analysis', 'Research Skills', 'Advocacy', 'Public Speaking', 'Negotiation', 'Leadership'],
       images: [
-        { src: '/assets/organizations/assets-head-1.jpg', alt: 'ASSETS Head 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/assets-head-2.jpg', alt: 'ASSETS Head 2', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/assets-head-3.jpg', alt: 'ASSETS Head 3', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/assets-head-1.png', alt: 'ASSETS Head 1', link: 'https://www.instagram.com/p/DKUXvXeTWEb/?img_index=1' },
+        { src: '/assets/organizations/assets-head-2.png', alt: 'ASSETS Head 2', link: 'https://www.instagram.com/p/DPc_Ii3E7nS/?img_index=3' },
+        { src: '/assets/organizations/assets-head-3.png', alt: 'ASSETS Head 3', link: 'https://trpl.sv.ugm.ac.id/2025/11/07/hearing-trpl-sv-ugm-2025-diskusi-terbuka-mahasiswa-dan-dosen-untuk-perbaikan-akademik-fasilitas/' },
+        { src: '/assets/organizations/assets-head-4.png', alt: 'ASSETS Head 4', link: 'https://trpl.sv.ugm.ac.id/2025/04/21/techxchange-assets-ugm-x-himadira-telkom-university/' },
+        { src: '/assets/organizations/assets-head-5.png', alt: 'ASSETS Head 5', link: 'https://trpl.sv.ugm.ac.id/2025/03/15/menjalin-kebersamaan-sinergi-melalui-first-gathering-assets/' }
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/assets_ugm/'
       }
     },
     {
@@ -41,15 +40,14 @@ const Organizations = () => {
       description: 'Managing and coordinating training programs and competitions at national/international levels, analyzing algorithm trends, organizing workshops and coding contests.',
       skills: ['Competitive Programming', 'Data Structures', 'Problem Solving', 'Event Management', 'Teamwork'],
       images: [
-        { src: '/assets/organizations/komatik-vice-1.jpg', alt: 'KOMATIK Vice 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/komatik-vice-2.jpg', alt: 'KOMATIK Vice 2', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/komatik-vice-3.jpg', alt: 'KOMATIK Vice 3', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/komatik-vice-1.png', alt: 'KOMATIK Vice 1', link: 'https://www.instagram.com/p/DGXFsnoxl_q/?img_index=2' },
+        { src: '/assets/organizations/komatik-vice-2.png', alt: 'KOMATIK Vice 2'},
+        { src: '/assets/organizations/komatik-vice-3.jpg', alt: 'KOMATIK Vice 3'},
+        { src: '/assets/organizations/komatik-vice-4.png', alt: 'KOMATIK Vice 4'},
+        { src: '/assets/organizations/komatik-vice-5.jpg', alt: 'KOMATIK Vice 5'}
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/komatikugm/'
       }
     },
     {
@@ -60,14 +58,12 @@ const Organizations = () => {
       description: 'Serving as staff of KASTRAD division, accommodating TRPL student aspirations, communicating research findings, and assisting in welcoming new students.',
       skills: ['Problem Analysis', 'Public Speaking', 'Research Skills', 'Communication', 'Time Management'],
       images: [
-        { src: '/assets/organizations/assets-staff-1.jpg', alt: 'ASSETS Staff 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/assets-staff-2.jpg', alt: 'ASSETS Staff 2', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/assets-staff-1.png', alt: 'ASSETS Staff 1', link: 'https://www.instagram.com/p/C42dXCiv0Vs/?img_index=3' },
+        { src: '/assets/organizations/assets-staff-2.png', alt: 'ASSETS Staff 2', link: 'https://trpl.sv.ugm.ac.id/2024/11/02/hearing-prodi-trpl-2024-wadah-aspirasi-mahasiswa-trpl/' },
+        { src: '/assets/organizations/assets-staff-3.png', alt: 'ASSETS Staff 3', link: 'https://trpl.sv.ugm.ac.id/2024/11/30/liga-trpl-2024-ajang-kompetisi-solidaritas-dan-prestasi-mahasiswa/' }
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/assets_ugm/'
       }
     },
     {
@@ -78,14 +74,10 @@ const Organizations = () => {
       description: 'Building foundation in networking concepts through hands-on learning with Cisco tools, developing skills for network management and cybersecurity.',
       skills: ['Cybersecurity', 'Network Security', 'Cisco Networking', 'Problem Solving', 'Technical Learning'],
       images: [
-        { src: '/assets/organizations/asgama-1.jpg', alt: 'ASGAMA 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/asgama-2.jpg', alt: 'ASGAMA 2', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/asgama-1.png', alt: 'ASGAMA 1', link: 'https://www.instagram.com/p/C4vW1VzPJD2/?img_index=9' }
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/komatikugm/'
       }
     },
     {
