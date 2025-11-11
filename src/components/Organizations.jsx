@@ -88,15 +88,11 @@ const Organizations = () => {
       description: 'Leading creative team in producing digital/print promotional materials, managing event visual identity, ensuring high-quality photo/video documentation.',
       skills: ['Graphic Design', 'Creative Direction', 'Team Coordination', 'Event Documentation', 'Leadership'],
       images: [
-        { src: '/assets/organizations/senopati-1.jpg', alt: 'SENOPATI 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/senopati-2.jpg', alt: 'SENOPATI 2', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/senopati-3.jpg', alt: 'SENOPATI 3', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/senopati-1.png', alt: 'SENOPATI 1', link: 'https://www.instagram.com/p/DEMSD5fPxsd/?img_index=2' },
+        { src: '/assets/organizations/senopati-2.png', alt: 'SENOPATI 2'}
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/senopati.ugm/'
       }
     },
     {
@@ -107,14 +103,11 @@ const Organizations = () => {
       description: 'Contributing to content creation and publication on Instagram, managing posting schedules, editing engaging content, interacting with audience.',
       skills: ['Public Relations', 'Editing', 'Social Media', 'Communication', 'Content Creation'],
       images: [
-        { src: '/assets/organizations/kmpp-1.jpg', alt: 'KMPP 1', link: 'https://instagram.com/assetsugm' },
-        { src: '/assets/organizations/kmpp-2.jpg', alt: 'KMPP 2', link: 'https://instagram.com/assetsugm' }
+        { src: '/assets/organizations/kmpp-1.png', alt: 'KMPP 1', link: 'https://www.instagram.com/p/C9SFTp0h6qh/?img_index=3' },
+        { src: '/assets/organizations/kmpp-2.png', alt: 'KMPP 2'}
       ],
       socialLinks: {
-        instagram: 'https://instagram.com/assetsugm',
-        linkedin: '',
-        github: '',
-        website: ''
+        instagram: 'https://www.instagram.com/kmpp.ugm/'
       }
     }
   ];
@@ -221,9 +214,66 @@ const Organizations = () => {
                     <h3 className="text-xl md:text-2xl font-bold text-gold mb-2 group-hover:text-gold-light transition-colors">
                       {org.position}
                     </h3>
-                    <p className="text-lg md:text-xl text-white font-semibold mb-1">
-                      {org.organization}
-                    </p>
+                    <div className="flex items-center justify-between gap-3 mb-1">
+                      <p className="text-lg md:text-xl text-white font-semibold">
+                        {org.organization}
+                      </p>
+                      {/* Social Links - Di sebelah Organization */}
+                      <div className="flex items-center gap-2">
+                        {org.socialLinks.instagram && (
+                          <motion.a
+                            href={org.socialLinks.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, color: '#E4405F' }}
+                            whileTap={{ scale: 0.9 }}
+                            className="text-gray-400 hover:text-pink-500 transition-colors duration-300"
+                            aria-label="Instagram"
+                          >
+                            <FaInstagram className="w-5 h-5" />
+                          </motion.a>
+                        )}
+                        {org.socialLinks.linkedin && (
+                          <motion.a
+                            href={org.socialLinks.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, color: '#0077B5' }}
+                            whileTap={{ scale: 0.9 }}
+                            className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                            aria-label="LinkedIn"
+                          >
+                            <FaLinkedin className="w-5 h-5" />
+                          </motion.a>
+                        )}
+                        {org.socialLinks.github && (
+                          <motion.a
+                            href={org.socialLinks.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, color: '#ffffff' }}
+                            whileTap={{ scale: 0.9 }}
+                            className="text-gray-400 hover:text-white transition-colors duration-300"
+                            aria-label="GitHub"
+                          >
+                            <FaGithub className="w-5 h-5" />
+                          </motion.a>
+                        )}
+                        {org.socialLinks.website && (
+                          <motion.a
+                            href={org.socialLinks.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.2, color: '#d4af37' }}
+                            whileTap={{ scale: 0.9 }}
+                            className="text-gray-400 hover:text-gold transition-colors duration-300"
+                            aria-label="Website"
+                          >
+                            <FaGlobe className="w-5 h-5" />
+                          </motion.a>
+                        )}
+                      </div>
+                    </div>
                     <p className="text-sm md:text-base text-gray-400">
                       {org.period}
                     </p>
@@ -333,65 +383,6 @@ const Organizations = () => {
                   <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 text-justify">
                     {org.description}
                   </p>
-
-                  {/* Social Links Section - Terpisah dari slider */}
-                  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gold/10">
-                    <span className="text-gray-400 text-sm font-medium">Connect:</span>
-                    <div className="flex items-center gap-3">
-                      {org.socialLinks.instagram && (
-                        <motion.a
-                          href={org.socialLinks.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.2, color: '#E4405F' }}
-                          whileTap={{ scale: 0.9 }}
-                          className="text-gray-400 hover:text-pink-500 transition-colors duration-300"
-                          aria-label="Instagram"
-                        >
-                          <FaInstagram className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                      {org.socialLinks.linkedin && (
-                        <motion.a
-                          href={org.socialLinks.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.2, color: '#0077B5' }}
-                          whileTap={{ scale: 0.9 }}
-                          className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
-                          aria-label="LinkedIn"
-                        >
-                          <FaLinkedin className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                      {org.socialLinks.github && (
-                        <motion.a
-                          href={org.socialLinks.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.2, color: '#ffffff' }}
-                          whileTap={{ scale: 0.9 }}
-                          className="text-gray-400 hover:text-white transition-colors duration-300"
-                          aria-label="GitHub"
-                        >
-                          <FaGithub className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                      {org.socialLinks.website && (
-                        <motion.a
-                          href={org.socialLinks.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.2, color: '#d4af37' }}
-                          whileTap={{ scale: 0.9 }}
-                          className="text-gray-400 hover:text-gold transition-colors duration-300"
-                          aria-label="Website"
-                        >
-                          <FaGlobe className="w-5 h-5" />
-                        </motion.a>
-                      )}
-                    </div>
-                  </div>
 
                   {/* Skill Tags */}
                   <div className="flex flex-wrap gap-2">
