@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="description" content="My Portfolio - Interactive portfolio website" />
     <title>My Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,24 @@
       document.documentElement.style.overflowY = 'auto';
       document.body.style.overflowY = 'auto';
       document.body.style.overflow = 'auto';
+      
+      // Calculate initial height for mobile/tablet/desktop
+      (function() {
+        const vh = Math.max(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
+        const vw = window.innerWidth;
+        let height;
+        
+        if (vw <= 767) {
+          height = vh * 7.6; // Mobile
+        } else if (vw <= 1023) {
+          height = vh * 6.4; // Tablet
+        } else {
+          height = vh * 5.6; // Desktop
+        }
+        
+        document.documentElement.style.minHeight = height + 'px';
+        document.body.style.minHeight = height + 'px';
+      })();
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>

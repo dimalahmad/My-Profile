@@ -36,7 +36,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111' }}>
+    <section id="about" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '80vh' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -60,10 +60,9 @@ const About = () => {
       <div className="container-custom relative z-10 py-20 px-6 md:px-12 lg:px-24">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <motion.h2
@@ -85,10 +84,9 @@ const About = () => {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto mb-16">
           {/* Left Column - Circular Profile Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="flex justify-center lg:justify-start"
           >
             <div className="relative group">
@@ -129,46 +127,41 @@ const About = () => {
           {/* Right Column - Description */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="space-y-6 text-center lg:text-left"
           >
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
               className="text-2xl text-white leading-relaxed"
             >
               Hi there! I'm <span className="text-gradient-premium font-heading font-bold">Dimal Karim Ahmad</span> 👋
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
               className="text-lg text-gray-300 leading-relaxed text-justify"
             >
               A Software Engineering undergraduate at <span className="text-gold font-semibold">Universitas Gadjah Mada (UGM)</span> passionate about connecting technology, data, and human-centered design.
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
               className="text-lg text-gray-300 leading-relaxed text-justify"
             >
               I believe that great innovation starts from curiosity and empathy. My experiences in ASSETS, KOMATIK, and SENOPATI have taught me how collaboration, analysis, and creativity come together to build meaningful products.
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.55 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
               className="text-lg text-gray-300 leading-relaxed text-justify"
             >
               Whether leading strategic studies, coordinating competitive programming events, or designing visual narratives, I thrive at the intersection where data meets design—turning insights into stories that drive decisions.
@@ -180,9 +173,8 @@ const About = () => {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto mb-16">
           {/* Left Column - Current Age */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="bg-gradient-to-r from-gold/10 to-transparent p-8 rounded-2xl border border-gold/20 h-full flex flex-col"
           >
@@ -292,9 +284,8 @@ const About = () => {
 
           {/* Right Column - Core Values */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
             className="bg-gradient-to-r from-gold/10 to-transparent p-8 rounded-2xl border border-gold/20"
           >
@@ -314,8 +305,7 @@ const About = () => {
                 <motion.div
                   key={trait.text}
                   initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -2 }}
                   className="text-center p-4 rounded-lg bg-gold/5 border border-gold/20"

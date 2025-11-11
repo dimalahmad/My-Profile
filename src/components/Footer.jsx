@@ -10,8 +10,7 @@ const Footer = () => {
         <motion.div
           variants={fadeIn("up", 0.1)}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="show"
           className="flex flex-col items-center justify-center space-y-4 text-center"
         >
           {/* Copyright */}

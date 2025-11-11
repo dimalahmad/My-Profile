@@ -30,13 +30,12 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 md:py-28" style={{ backgroundColor: '#101010' }}>
+    <section id="projects" className="py-20 md:py-28" style={{ backgroundColor: '#101010', minHeight: '90vh' }}>
       <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="show"
           className="text-center mb-20"
         >
           <motion.h2
@@ -67,8 +66,7 @@ const Projects = () => {
         <motion.div
           variants={staggerContainer(0.2, 0.1)}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="show"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project, index) => (
@@ -96,6 +94,7 @@ const Projects = () => {
                 <motion.img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                   whileHover={{ scale: 1.1 }}
                 />
@@ -129,7 +128,7 @@ const Projects = () => {
                     <motion.span
                       key={tag}
                       initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
+                      animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: tagIndex * 0.1 }}
                       className="px-3 py-1 bg-dark-gray border border-gray-700 rounded-full text-xs text-gray-300 group-hover:border-gold/50 transition-colors duration-300"
                     >
@@ -149,8 +148,7 @@ const Projects = () => {
         <motion.div
           variants={fadeIn("up", 0.5)}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+          animate="show"
           className="text-center mt-16"
         >
           <p className="text-gray-400 mb-6">

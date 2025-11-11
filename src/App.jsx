@@ -11,8 +11,52 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  // Force enable scroll immediately - NEVER wait for loading
+  // Force enable scroll immediately and set initial page height
   useEffect(() => {
+    // Calculate total page height based on section min-heights (responsive)
+    const calculateInitialHeight = () => {
+      // Use the larger of innerHeight or documentElement.clientHeight for mobile
+      const viewportHeight = Math.max(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
+      const viewportWidth = window.innerWidth;
+      
+      let estimatedHeight;
+      
+      // Mobile (max-width: 767px)
+      if (viewportWidth <= 767) {
+        // Hero: 100vh, About: 100vh, Skills: 150vh, Projects: 120vh, Certificates: 150vh, Contact: 90vh, Footer: 30vh
+        // Total: ~740vh minimum
+        // Add extra buffer for mobile address bar
+        estimatedHeight = viewportHeight * 7.6;
+      }
+      // Tablet (max-width: 1023px)
+      else if (viewportWidth <= 1023) {
+        // Hero: 100vh, About: 90vh, Skills: 120vh, Projects: 100vh, Certificates: 120vh, Contact: 80vh, Footer: 25vh
+        // Total: ~635vh minimum
+        estimatedHeight = viewportHeight * 6.4;
+      }
+      // Desktop
+      else {
+        // Hero: 100vh, About: 80vh, Skills: 100vh, Projects: 90vh, Certificates: 100vh, Contact: 70vh, Footer: 20vh
+        // Total: ~560vh minimum
+        estimatedHeight = viewportHeight * 5.6;
+      }
+      
+      // Set initial height to prevent scroll freeze
+      document.documentElement.style.minHeight = `${estimatedHeight}px`;
+      document.body.style.minHeight = `${estimatedHeight}px`;
+      
+      // Also set on html element
+      document.documentElement.style.height = 'auto';
+    };
+    
+    // Recalculate on resize
+    const handleResize = () => {
+      calculateInitialHeight();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    
     // Enable scroll immediately on mount - don't wait for anything
     const enableScroll = () => {
       document.body.style.overflowY = 'auto';
@@ -24,26 +68,76 @@ function App() {
       document.documentElement.classList.remove('overflow-hidden');
     };
     
+    // Calculate initial height first
+    calculateInitialHeight();
+    
     // Enable immediately
     enableScroll();
     
     // Enable on next tick
-    setTimeout(enableScroll, 0);
-    setTimeout(enableScroll, 10);
-    setTimeout(enableScroll, 50);
-    setTimeout(enableScroll, 100);
+    setTimeout(() => {
+      enableScroll();
+      calculateInitialHeight();
+    }, 0);
+    setTimeout(() => {
+      enableScroll();
+      calculateInitialHeight();
+    }, 10);
+    setTimeout(() => {
+      enableScroll();
+      calculateInitialHeight();
+    }, 50);
+    setTimeout(() => {
+      enableScroll();
+      calculateInitialHeight();
+    }, 100);
+    
+    // Update height when DOM changes
+    const updateHeight = () => {
+      // Force layout calculation
+      document.body.offsetHeight;
+      
+      const actualHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight,
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight
+      );
+      
+      if (actualHeight > 0) {
+        // Use max of estimated and actual height
+        const viewportHeight = Math.max(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
+        const viewportWidth = window.innerWidth;
+        
+        let estimatedHeight;
+        if (viewportWidth <= 767) {
+          estimatedHeight = viewportHeight * 7.6;
+        } else if (viewportWidth <= 1023) {
+          estimatedHeight = viewportHeight * 6.4;
+        } else {
+          estimatedHeight = viewportHeight * 5.6;
+        }
+        
+        const finalHeight = Math.max(actualHeight, estimatedHeight);
+        document.documentElement.style.minHeight = `${finalHeight}px`;
+        document.body.style.minHeight = `${finalHeight}px`;
+      }
+    };
     
     // Continuously ensure scroll is never locked
     const ensureScrollEnabled = () => {
       enableScroll();
+      updateHeight();
     };
     
     // Check frequently
-    const interval = setInterval(ensureScrollEnabled, 50);
+    const interval = setInterval(ensureScrollEnabled, 100);
     
-    // Also watch for any style changes
+    // Also watch for any style changes and DOM changes
     const observer = new MutationObserver(() => {
       enableScroll();
+      updateHeight();
     });
     
     observer.observe(document.body, {
@@ -58,26 +152,11 @@ function App() {
       attributeFilter: ['style', 'class']
     });
     
-    // Also listen to any attempts to disable scroll
-    const originalSetProperty = CSSStyleDeclaration.prototype.setProperty;
-    CSSStyleDeclaration.prototype.setProperty = function(property, value, priority) {
-      if (property === 'overflow' && value === 'hidden') {
-        if (this === document.body.style || this === document.documentElement.style) {
-          return; // Block attempts to hide scroll
-        }
-      }
-      if (property === 'overflow-y' && value === 'hidden') {
-        if (this === document.body.style || this === document.documentElement.style) {
-          return; // Block attempts to hide scroll
-        }
-      }
-      return originalSetProperty.call(this, property, value, priority);
-    };
-    
     return () => {
       clearInterval(interval);
       observer.disconnect();
-      CSSStyleDeclaration.prototype.setProperty = originalSetProperty;
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
     };
   }, []);
 
@@ -99,50 +178,45 @@ function App() {
 
         {/* About Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <About />
         </motion.div>
 
         {/* Skills Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Skills />
         </motion.div>
 
         {/* Projects Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Projects />
         </motion.div>
 
         {/* Certificates Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Certificates />
         </motion.div>
 
         {/* Contact Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <Contact />
         </motion.div>

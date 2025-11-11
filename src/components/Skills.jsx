@@ -93,7 +93,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111' }}>
+    <section id="skills" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '100vh' }}>
       {/* Parallax Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -124,10 +124,9 @@ const Skills = () => {
       <div className="container-custom relative z-10 px-6 md:px-12 lg:px-24">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <motion.h2
@@ -151,8 +150,7 @@ const Skills = () => {
         <motion.div
           variants={staggerContainer(0.1, 0.05)}
           initial="hidden"
-          whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+          animate="show"
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
             {[skillCategories[0], skillCategories[3]].map((category, index) => {
@@ -212,8 +210,7 @@ const Skills = () => {
                     <motion.div
                       key={subcategory.name}
                       initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      animate={{ opacity: 1 }}
                       transition={{ delay: (categoryIndex * 0.1) + (subIndex * 0.05) }}
                       className="space-y-3"
                     >
@@ -227,8 +224,7 @@ const Skills = () => {
                           <motion.div
                             key={skill}
                             initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{ 
                               delay: (categoryIndex * 0.1) + (subIndex * 0.05) + (skillIndex * 0.02),
                               type: "spring",
@@ -256,8 +252,8 @@ const Skills = () => {
                               }}
                             >
                               {skill}
-                            </div>
-                            
+              </div>
+
                             {/* Gold Glow Effect on Hover */}
                             <motion.div
                               className="absolute inset-0 rounded-lg opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -269,8 +265,8 @@ const Skills = () => {
                           </motion.div>
                         ))}
                       </div>
-                    </motion.div>
-                  ))}
+            </motion.div>
+          ))}
                 </div>
               </div>
             </motion.div>
@@ -279,11 +275,10 @@ const Skills = () => {
         </motion.div>
 
           {/* Row 2: Design & Creative Tools - Data & Analytics - Other Technical Tools & Concepts (3 columns) */}
-          <motion.div
+        <motion.div
             variants={staggerContainer(0.1, 0.05)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+          initial="hidden"
+          animate="show"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {[skillCategories[2], skillCategories[1], skillCategories[4]].map((category, index) => {
@@ -311,7 +306,7 @@ const Skills = () => {
                     }}
                   >
                     {/* Animated Border Glow on Hover */}
-                    <motion.div
+          <motion.div
                       className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                       style={{
                         background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))',
@@ -340,11 +335,10 @@ const Skills = () => {
                     {/* Subcategories */}
                     <div className="relative z-10 space-y-6">
                       {category.subcategories.map((subcategory, subIndex) => (
-                        <motion.div
+                <motion.div
                           key={subcategory.name}
                           initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
+                  animate={{ opacity: 1 }}
                           transition={{ delay: (categoryIndex * 0.1) + (subIndex * 0.05) }}
                           className="space-y-3"
                         >
@@ -355,11 +349,10 @@ const Skills = () => {
                           {/* Skills Badges Grid */}
                           <div className="flex flex-wrap gap-3">
                             {subcategory.skills.map((skill, skillIndex) => (
-                              <motion.div
+          <motion.div
                                 key={skill}
                                 initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 transition={{ 
                                   delay: (categoryIndex * 0.1) + (subIndex * 0.05) + (skillIndex * 0.02),
                                   type: "spring",
@@ -390,7 +383,7 @@ const Skills = () => {
                                 </div>
                                 
                                 {/* Gold Glow Effect on Hover */}
-                                <motion.div
+                <motion.div
                                   className="absolute inset-0 rounded-lg opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none"
                                   style={{
                                     background: 'radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%)',
@@ -404,10 +397,10 @@ const Skills = () => {
               ))}
             </div>
             </div>
-                </motion.div>
+          </motion.div>
               );
             })}
-          </motion.div>
+        </motion.div>
         </div>
       </div>
     </section>

@@ -54,7 +54,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="pt-16 pb-24 md:pt-20 md:pb-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111' }}>
+    <section id="contact" className="pt-16 pb-24 md:pt-20 md:pb-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '70vh' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -80,8 +80,7 @@ const Contact = () => {
         <motion.div
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate="show"
           className="text-center mb-12 md:mb-16"
         >
           <motion.h2
@@ -124,8 +123,7 @@ const Contact = () => {
           <motion.div
             variants={staggerContainer(0.1, 0.05)}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            animate="show"
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 md:mb-16"
           >
             {contactInfo.map((info, index) => (
@@ -166,8 +164,7 @@ const Contact = () => {
           <motion.div
             variants={staggerContainer(0.1, 0.05)}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            animate="show"
             className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 md:mb-16"
           >
             {socialLinks.map((social, index) => (
@@ -205,8 +202,7 @@ const Contact = () => {
           <motion.div
             variants={fadeIn("up", 0.6)}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            animate="show"
             className="text-center"
           >
             <motion.a

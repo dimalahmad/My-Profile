@@ -48,13 +48,142 @@
     min-height: 50vh;
     overflow: visible;
     position: relative;
+    height: auto;
+    /* Ensure sections take up space even when content is loading */
+    contain: layout;
+    /* Force render immediately */
+    will-change: auto;
   }
   
-  /* Ensure content is always visible and scrollable */
-  #skills, #certificates, #projects, #about, #contact {
-    min-height: 50vh;
+  /* Ensure content is always visible and scrollable - Set explicit heights to prevent scroll freeze */
+  #hero {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+  
+  #about {
+    min-height: 80vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
+  #skills {
+    min-height: 100vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
+  #projects {
+    min-height: 90vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
+  #certificates {
+    min-height: 100vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
+  #contact {
+    min-height: 70vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
+  footer {
+    min-height: 20vh;
     display: block;
     visibility: visible;
+  }
+  
+  /* Mobile and Tablet - Adjust min-heights for smaller screens */
+  @media (max-width: 1023px) {
+    #hero {
+      min-height: 100vh !important;
+      height: 100vh !important;
+    }
+    
+    #about {
+      min-height: 90vh !important;
+    }
+    
+    #skills {
+      min-height: 120vh !important;
+    }
+    
+    #projects {
+      min-height: 100vh !important;
+    }
+    
+    #certificates {
+      min-height: 120vh !important;
+    }
+    
+    #contact {
+      min-height: 80vh !important;
+    }
+    
+    footer {
+      min-height: 25vh;
+    }
+  }
+  
+  /* Mobile only - Larger min-heights for mobile */
+  @media (max-width: 767px) {
+    #hero {
+      min-height: 100vh !important;
+      height: 100vh !important;
+    }
+    
+    #about {
+      min-height: 100vh !important;
+    }
+    
+    #skills {
+      min-height: 150vh !important;
+    }
+    
+    #projects {
+      min-height: 120vh !important;
+    }
+    
+    #certificates {
+      min-height: 150vh !important;
+    }
+    
+    #contact {
+      min-height: 90vh !important;
+    }
+    
+    footer {
+      min-height: 30vh;
+    }
+  }
+  
+  /* Ensure images don't block scroll */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
   
   /* Custom scrollbar - Gold/Yellow */
