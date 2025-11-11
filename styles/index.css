@@ -12,16 +12,49 @@
   
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
     overflow-x: hidden;
+    overflow-y: auto !important;
     width: 100%;
     max-width: 100vw;
+    height: auto;
   }
   
   body {
     @apply antialiased bg-black text-gray-300 overflow-x-hidden;
+    overflow-y: auto !important;
+    overflow: visible !important;
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  /* Force scroll to always be enabled */
+  html, body {
+    position: relative;
+  }
+  
+  /* Prevent any element from blocking scroll */
+  main {
+    overflow: visible !important;
+    min-height: 100vh;
+  }
+  
+  /* Ensure all sections are scrollable even during loading */
+  section {
+    min-height: 50vh;
+    overflow: visible;
+    position: relative;
+  }
+  
+  /* Ensure content is always visible and scrollable */
+  #skills, #certificates, #projects, #about, #contact {
+    min-height: 50vh;
+    display: block;
+    visibility: visible;
   }
   
   /* Custom scrollbar - Gold/Yellow */

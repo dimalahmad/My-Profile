@@ -12,6 +12,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Force enable scroll immediately before React loads -->
+    <script>
+      // Enable scroll immediately - don't wait for anything
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      document.body.style.overflow = 'auto';
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
