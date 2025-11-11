@@ -33,6 +33,16 @@ Berdasarkan konfigurasi di `src/components/Organizations.jsx`, file gambar harus
 1. `kmpp-1.jpg`
 2. `kmpp-2.jpg`
 
+### TECH ENTHUSIAST DAY - Staff of HUMPUB
+1. `humpub-1.jpg`
+2. `humpub-2.jpg`
+3. `humpub-3.jpg`
+
+### SERIES UGM - Software Engineering Oriented Study
+1. `series-1.jpg`
+2. `series-2.jpg`
+3. `series-3.jpg`
+
 ## Catatan
 
 - Format gambar yang didukung: JPG, PNG, WebP

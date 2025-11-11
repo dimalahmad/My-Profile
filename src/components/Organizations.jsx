@@ -109,6 +109,36 @@ const Organizations = () => {
       socialLinks: {
         instagram: 'https://www.instagram.com/kmpp.ugm/'
       }
+    },
+    {
+      id: 7,
+      position: 'Staff of HUMPUB',
+      organization: 'TECH ENTHUSIAST DAY',
+      period: 'Sep 2024 - Nov 2024 · 3 mos',
+      description: 'Served in the HUMPUB (Public Relations & Publications) division, responsible for building the organization\'s public image through communication strategies, content creation, and audience engagement.',
+      skills: ['Public Relations', 'Public Speaking', 'Communication', 'Teamwork', 'Creative Strategy'],
+      images: [
+        { src: '/assets/organizations/humpub-1.jpg', alt: 'HUMPUB 1'}
+      ],
+      socialLinks: {
+        instagram: 'https://www.instagram.com/techenthusiastday_ugm/'
+      }
+    },
+    {
+      id: 8,
+      position: 'Liaison between the committee and new students.',
+      organization: 'SERIES UGM - Software Engineering Oriented Study',
+      period: 'Aug 2024 - Dec 2024 · 5 mos',
+      description: 'Acted as the liaison between the committee and new students in the Software Engineering Oriented Study program at the Vocational School of Universitas Gadjah Mada, focusing on communication and coordination.',
+      skills: ['Communication', 'Coordination', 'Mentoring', 'Public Relations', 'Team Management'],
+      images: [
+        { src: '/assets/organizations/series-1.png', alt: 'SERIES 1', link: 'https://www.instagram.com/p/C_lIcvFyjVd/?img_index=5' },
+        { src: '/assets/organizations/series-2.jpg', alt: 'SERIES 2'},
+        { src: '/assets/organizations/series-3.jpg', alt: 'SERIES 3'}
+      ],
+      socialLinks: {
+        instagram: 'https://www.instagram.com/series.ugm/'
+      }
     }
   ];
 
