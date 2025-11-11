@@ -81,18 +81,17 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Two Column Layout - Mobile: Photo top, Text bottom */}
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Left Column - Circular Profile Image with Glass Effect */}
+        {/* Section 1: Profile - Description (2 Columns) */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto mb-16">
+          {/* Left Column - Circular Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-start order-1 lg:order-1"
+            className="flex justify-center lg:justify-start"
           >
             <div className="relative group">
-              {/* Circular Profile Image with Glass Hover Effect */}
               <motion.div
                 className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold/40 relative cursor-pointer"
                 whileHover={{ scale: 1.05 }}
@@ -111,22 +110,6 @@ const About = () => {
                     e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=320&background=d4af37&color=000000&bold=true&font-size=0.4`;
                   }}
                 />
-                
-                {/* Glass Overlay on Hover */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-full"
-                  style={{
-                    backdropFilter: 'blur(10px)',
-                    background: 'rgba(0, 0, 0, 0.4)'
-                  }}
-                >
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileHover={{ y: 0, opacity: 1 }}
-                    className="text-center"
-                  >
-                  </motion.div>
-                </motion.div>
               </motion.div>
 
               {/* Decorative Elements */}
@@ -143,167 +126,190 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - Text Content */}
+          {/* Right Column - Description */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 order-2 lg:order-2 text-center lg:text-left"
+            className="space-y-6 text-center lg:text-left"
           >
-            {/* Main Description */}
-            <div className="space-y-6">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="text-2xl text-white leading-relaxed"
-              >
-                Hi there! I'm <span className="text-gradient-premium font-heading font-bold">Dimal Karim Ahmad</span> 👋
-              </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl text-white leading-relaxed"
+            >
+              Hi there! I'm <span className="text-gradient-premium font-heading font-bold">Dimal Karim Ahmad</span> 👋
+            </motion.p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="text-lg text-gray-300 leading-relaxed text-justify"
-              >
-                Aspiring Product Analyst & Undergraduate Software Engineering Student at{' '}
-                <span className="text-gold font-semibold">Universitas Gadjah Mada (UGM)</span>.
-              </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-gray-300 leading-relaxed text-justify"
+            >
+              A Software Engineering undergraduate at <span className="text-gold font-semibold">Universitas Gadjah Mada (UGM)</span> passionate about connecting technology, data, and human-centered design.
+            </motion.p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="text-lg text-gray-300 leading-relaxed text-justify"
-              >
-                My passion lies in the fields of programming, data analysis, and engaging in research and exploration.
-                I'm driven by curiosity, learning, and the pursuit of turning data-driven insights into impactful product decisions.
-              </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="text-lg text-gray-300 leading-relaxed text-justify"
+            >
+              I believe that great innovation starts from curiosity and empathy. My experiences in ASSETS, KOMATIK, and SENOPATI have taught me how collaboration, analysis, and creativity come together to build meaningful products.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.55 }}
+              className="text-lg text-gray-300 leading-relaxed text-justify"
+            >
+              Whether leading strategic studies, coordinating competitive programming events, or designing visual narratives, I thrive at the intersection where data meets design—turning insights into stories that drive decisions.
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Section 2: Age - Core Values (2 Columns) */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto mb-16">
+          {/* Left Column - Current Age */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="bg-gradient-to-r from-gold/10 to-transparent p-8 rounded-2xl border border-gold/20 h-full flex flex-col"
+          >
+            <div className="flex items-center space-x-3 mb-6">
+              <h3 className="text-gold font-heading font-semibold text-2xl">Current Age</h3>
             </div>
-
-            {/* Interactive Age Counter */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="bg-gradient-to-r from-gold/10 to-transparent p-8 rounded-2xl border border-gold/20"
-            >
-              <div className="flex items-center space-x-3 mb-6">
-                <span className="text-3xl">⏳</span>
-                <h3 className="text-gold font-heading font-semibold text-2xl">Current Age</h3>
+            
+            <div className="grid grid-cols-6 gap-4 mb-4">
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Years</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.years}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.years}
+                </motion.p>
               </div>
               
-              {/* Age Grid */}
-              <div className="grid grid-cols-6 gap-4 mb-4">
-                {/* Labels */}
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Years</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.years}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.years}
-                  </motion.p>
-                </div>
-                
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Months</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.months}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.months}
-                  </motion.p>
-                </div>
-                
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Days</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.days}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.days}
-                  </motion.p>
-                </div>
-                
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Hours</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.hours}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.hours}
-                  </motion.p>
-                </div>
-                
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Minutes</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.minutes}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.minutes}
-                  </motion.p>
-                </div>
-                
-                <div className="text-center">
-                  <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Seconds</p>
-                  <motion.p 
-                    className="text-gold font-mono text-2xl font-bold"
-                    key={age.seconds}
-                    initial={{ y: -10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
-                  >
-                    {age.seconds}
-                  </motion.p>
-                </div>
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Months</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.months}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.months}
+                </motion.p>
               </div>
               
-              <p className="text-gray-400 text-sm text-center">
-                Born: January 29, 2006 • Updates every second
-              </p>
-            </motion.div>
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Days</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.days}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.days}
+                </motion.p>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Hours</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.hours}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.hours}
+                </motion.p>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Minutes</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.minutes}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.minutes}
+                </motion.p>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-gold/70 text-xs uppercase tracking-wider mb-2">Seconds</p>
+                <motion.p 
+                  className="text-gold font-mono text-2xl font-bold"
+                  key={age.seconds}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ textShadow: '0 0 10px rgba(212, 175, 55, 0.5)' }}
+                >
+                  {age.seconds}
+                </motion.p>
+              </div>
+            </div>
+            
+            <p className="text-gray-400 text-sm text-center mb-6">
+              Born: January 29, 2006 • Updates every second
+            </p>
+            
+            {/* Quote Card */}
+            <div className="relative p-6 rounded-2xl bg-gradient-to-r from-gold/5 to-transparent border border-gold/20 mt-6">
+              <div className="absolute top-2 left-2 text-gold text-4xl opacity-30">"</div>
+              <blockquote className="text-gray-300 italic text-sm md:text-base leading-relaxed font-heading">
+                I believe that great technology is built on empathy, clarity, and purpose. My goal is to bridge the gap between data, design, and decisions—creating products that not only solve problems but also inspire meaningful impact.
+              </blockquote>
+              <div className="absolute bottom-2 right-2 text-gold text-4xl opacity-30 rotate-180">"</div>
+            </div>
+          </motion.div>
 
-            {/* Key Traits */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4"
-            >
+          {/* Right Column - Core Values */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7 }}
+            className="bg-gradient-to-r from-gold/10 to-transparent p-8 rounded-2xl border border-gold/20"
+          >
+            <div className="flex items-center space-x-3 mb-6">
+              <h3 className="text-gold font-heading font-semibold text-2xl">Core Values</h3>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: '🎯', text: 'Goal-Oriented', color: 'from-blue-500 to-blue-600' },
-                { icon: '🧠', text: 'Analytical', color: 'from-purple-500 to-purple-600' },
-                { icon: '🚀', text: 'Growth-Minded', color: 'from-green-500 to-green-600' }
+                { icon: '🎯', text: 'Goal-Oriented' },
+                { icon: '🧠', text: 'Analytical' },
+                { icon: '🚀', text: 'Growth-Minded' },
+                { icon: '🎨', text: 'Creative-Driven' },
+                { icon: '🤝', text: 'Collaborative' },
+                { icon: '🔄', text: 'Adaptable' }
               ].map((trait, index) => (
                 <motion.div
                   key={trait.text}
@@ -312,51 +318,16 @@ const About = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className={`text-center p-4 rounded-lg bg-gradient-to-r ${trait.color} bg-opacity-10 border border-gold/20`}
+                  className="text-center p-4 rounded-lg bg-gold/5 border border-gold/20"
                 >
                   <div className="text-2xl mb-2">{trait.icon}</div>
-                  <div className="text-white font-medium text-sm">{trait.text}</div>
+                  <div className="text-white font-medium text-sm break-words">{trait.text}</div>
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* Call to Action */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.9 }}
-              className="pt-4"
-            >
-              <motion.button
-                onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-3 bg-gold-gradient text-black font-semibold rounded-lg hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10">Let's Connect</span>
-                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100"></div>
-              </motion.button>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Bottom Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1 }}
-          className="text-center mt-20 max-w-4xl mx-auto"
-        >
-          <div className="relative p-8 rounded-2xl bg-gradient-to-r from-gold/5 to-transparent border border-gold/20">
-            <div className="absolute top-4 left-4 text-gold text-6xl opacity-30">"</div>
-            <blockquote className="text-gray-300 italic text-xl leading-relaxed font-heading">
-              Data tells a story, but insights drive decisions. I'm here to bridge that gap and turn curiosity into impact.
-            </blockquote>
-            <div className="absolute bottom-4 right-4 text-gold text-6xl opacity-30 rotate-180">"</div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

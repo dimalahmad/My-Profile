@@ -124,17 +124,29 @@ const Hero = () => {
                 <TypeAnimation
                   sequence={[
                     'Aspiring Product Analyst',
-                    3000, // Wait 3 seconds
-                    'Tech Enthusiast',
-                    // Stay on Tech Enthusiast (no more sequences)
+                    3000,
+                    'Tech & Data Enthusiast',
+                    3000,
+                    'Creative Problem Solver',
+                    3000,
                   ]}
                   wrapper="span"
                   speed={50}
                   style={{ fontSize: 'inherit', display: 'inline-block' }}
-                  repeat={0} // Don't repeat - run only once
-                  cursor={false} // Hide cursor after completion
+                  repeat={Infinity}
+                  cursor={true}
                 />
               </motion.div>
+
+              {/* Value Statement */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="text-base md:text-lg lg:text-xl text-gray-400 leading-relaxed italic"
+              >
+                Turning data and design into meaningful stories that inspire impactful decisions.
+              </motion.p>
             </motion.div>
 
             {/* CTA Buttons */}
