@@ -73,6 +73,15 @@
     contain: layout;
   }
   
+  #organizations {
+    min-height: 100vh !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    contain: layout;
+  }
+  
   #skills {
     min-height: 100vh !important;
     height: auto !important;
@@ -126,6 +135,10 @@
       min-height: 90vh !important;
     }
     
+    #organizations {
+      min-height: 120vh !important;
+    }
+    
     #skills {
       min-height: 120vh !important;
     }
@@ -156,6 +169,10 @@
     
     #about {
       min-height: 100vh !important;
+    }
+    
+    #organizations {
+      min-height: 150vh !important;
     }
     
     #skills {

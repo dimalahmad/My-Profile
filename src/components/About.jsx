@@ -275,7 +275,7 @@ const About = () => {
             {/* Quote Card */}
             <div className="relative p-4 md:p-6 rounded-2xl bg-gradient-to-r from-gold/5 to-transparent border border-gold/20 mt-4 md:mt-6">
               <div className="absolute top-1 left-1 md:top-2 md:left-2 text-gold text-2xl md:text-4xl opacity-30">"</div>
-              <blockquote className="text-gray-300 italic text-xs sm:text-sm md:text-base leading-relaxed font-heading pl-4 md:pl-6 pr-4 md:pr-6">
+              <blockquote className="text-gray-300 italic text-base sm:text-lg md:text-xl leading-relaxed font-heading pl-4 md:pl-6 pr-4 md:pr-6">
                 I believe that great technology is built on empathy, clarity, and purpose. My goal is to bridge the gap between data, design, and decisions—creating products that not only solve problems but also inspire meaningful impact.
               </blockquote>
               <div className="absolute bottom-1 right-1 md:bottom-2 md:right-2 text-gold text-2xl md:text-4xl opacity-30 rotate-180">"</div>

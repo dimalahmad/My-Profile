@@ -358,25 +358,15 @@ const Certificates = () => {
 
               {/* Modal Footer */}
               <div className="p-4 md:p-6 border-t border-gold/20 bg-gradient-to-r from-transparent to-gold/10">
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex flex-wrap gap-2">
-                    {selectedCertificate.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-gold/10 border border-gold/30 rounded-full text-xs text-gold"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={closeModal}
-                    className="px-6 py-2.5 bg-gold hover:bg-gold-light text-black font-medium rounded-lg transition-all duration-300"
-                  >
-                    Close
-                  </motion.button>
+                <div className="flex flex-wrap gap-2">
+                  {selectedCertificate.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 bg-gold/10 border border-gold/30 rounded-full text-xs text-gold"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
