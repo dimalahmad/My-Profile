@@ -32,7 +32,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-x-hidden overflow-y-visible bg-black">
       {/* Premium Background with Parallax */}
       <motion.div 
         className="absolute inset-0 bg-gradient-hero"

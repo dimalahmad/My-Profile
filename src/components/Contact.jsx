@@ -66,7 +66,7 @@ const Contact = () => {
           variants={staggerContainer(0.1, 0.1)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="text-center mb-20"
         >
           <motion.h2

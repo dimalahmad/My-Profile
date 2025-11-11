@@ -36,7 +36,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
+    <section id="about" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -62,7 +62,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >

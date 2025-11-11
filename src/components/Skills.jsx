@@ -93,7 +93,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
+    <section id="skills" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111' }}>
       {/* Parallax Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -126,7 +126,7 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -148,11 +148,11 @@ const Skills = () => {
         {/* Skills Categories - Custom Layout */}
         <div className="space-y-8">
           {/* Row 1: Programming & Development - Product & Research (2 columns) */}
-          <motion.div
-            variants={staggerContainer(0.1, 0.05)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+        <motion.div
+          variants={staggerContainer(0.1, 0.05)}
+          initial="hidden"
+          whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
             {[skillCategories[0], skillCategories[3]].map((category, index) => {
@@ -180,7 +180,7 @@ const Skills = () => {
                 }}
               >
                 {/* Animated Border Glow on Hover */}
-                <motion.div
+            <motion.div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
                     background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))',
@@ -204,7 +204,7 @@ const Skills = () => {
                       💡 {category.highlight}
                     </p>
                   )}
-                </div>
+              </div>
 
                 {/* Subcategories */}
                 <div className="relative z-10 space-y-6">
@@ -276,14 +276,14 @@ const Skills = () => {
             </motion.div>
               );
             })}
-          </motion.div>
+        </motion.div>
 
           {/* Row 2: Design & Creative Tools - Data & Analytics - Other Technical Tools & Concepts (3 columns) */}
           <motion.div
             variants={staggerContainer(0.1, 0.05)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {[skillCategories[2], skillCategories[1], skillCategories[4]].map((category, index) => {
@@ -400,10 +400,10 @@ const Skills = () => {
                               </motion.div>
                             ))}
                           </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+                </motion.div>
+              ))}
+            </div>
+            </div>
                 </motion.div>
               );
             })}

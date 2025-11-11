@@ -16,7 +16,7 @@ function App() {
       <Navbar />
 
       {/* Main Content */}
-      <main>
+      <main className="min-h-screen overflow-visible">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -31,7 +31,7 @@ function App() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <About />
         </motion.div>
@@ -41,7 +41,7 @@ function App() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Skills />
         </motion.div>
@@ -51,7 +51,7 @@ function App() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Projects />
         </motion.div>
@@ -61,7 +61,7 @@ function App() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Certificates />
         </motion.div>
@@ -71,7 +71,7 @@ function App() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Contact />
         </motion.div>
