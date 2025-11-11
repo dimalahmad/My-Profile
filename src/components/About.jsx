@@ -104,6 +104,8 @@ const About = () => {
                 <img
                   src="/assets/profile.png"
                   alt="Dimal Karim Ahmad"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
                     e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=320&background=d4af37&color=000000&bold=true&font-size=0.4`;

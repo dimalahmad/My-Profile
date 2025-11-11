@@ -5,12 +5,24 @@ import { fadeIn, textVariant, zoomIn } from '../utils/motion';
 
 const Hero = () => {
   const [showProfile, setShowProfile] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImages, setLoadedImages] = useState(0);
 
   useEffect(() => {
     // Show profile after a short delay
     const timer = setTimeout(() => setShowProfile(true), 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleImageLoad = () => {
+    setLoadedImages(prev => {
+      const newCount = prev + 1;
+      if (newCount >= 2) { // 2 images in hero (front and back)
+        setImagesLoaded(true);
+      }
+      return newCount;
+    });
+  };
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -176,14 +188,29 @@ const Hero = () => {
             className="flex justify-center lg:justify-end mb-8 lg:mb-0"
           >
             <div className="coin-container">
-              <div className="coin">
+              {/* Loading Skeleton */}
+              {!imagesLoaded && (
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold/10 rounded-full animate-pulse flex items-center justify-center z-10">
+                  <div className="w-8 h-8 border-2 border-gold/50 border-t-gold rounded-full animate-spin"></div>
+                </div>
+              )}
+              
+              <div className="coin" style={{ opacity: imagesLoaded ? 1 : 0.3 }}>
                 {/* Front Side */}
                 <div className="side front">
                   <img
                     src="/assets/profile-front.jpg"
                     alt="Dimal Karim Ahmad - Front"
+                    loading="eager"
+                    decoding="async"
+                    onLoad={handleImageLoad}
                     onError={(e) => {
                       e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=350&background=d4af37&color=000000&bold=true&font-size=0.4`;
+                      handleImageLoad();
+                    }}
+                    style={{
+                      opacity: imagesLoaded ? 1 : 0.7,
+                      transition: 'opacity 0.3s ease-in-out'
                     }}
                   />
                 </div>
@@ -192,9 +219,17 @@ const Hero = () => {
                 <div className="side back">
                   <img
                     src="/assets/profile-back.jpg"
-                    alt="Dimal Karim Ahmad - Front"
+                    alt="Dimal Karim Ahmad - Back"
+                    loading="eager"
+                    decoding="async"
+                    onLoad={handleImageLoad}
                     onError={(e) => {
                       e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=350&background=d4af37&color=000000&bold=true&font-size=0.4`;
+                      handleImageLoad();
+                    }}
+                    style={{
+                      opacity: imagesLoaded ? 1 : 0.7,
+                      transition: 'opacity 0.3s ease-in-out'
                     }}
                   />
                 </div>
