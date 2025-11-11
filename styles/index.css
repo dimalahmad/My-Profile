@@ -12,13 +12,19 @@
   
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   body {
     @apply antialiased bg-black text-gray-300 overflow-x-hidden;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
-  /* Custom scrollbar */
+  /* Custom scrollbar - Gold/Yellow */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -34,6 +40,12 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: #f4d03f;
+  }
+  
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d4af37 #1a1a1a;
   }
 }
 
