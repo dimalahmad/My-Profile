@@ -102,7 +102,7 @@ const About = () => {
                 }}
               >
                 <img
-                  src="/assets/profile.jpg"
+                  src="/assets/profile.png"
                   alt="Dimal Karim Ahmad"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
@@ -123,14 +123,6 @@ const About = () => {
                     whileHover={{ y: 0, opacity: 1 }}
                     className="text-center"
                   >
-                    <motion.p 
-                      className="text-white text-xl md:text-2xl font-heading font-semibold"
-                      initial={{ scale: 0.8 }}
-                      whileHover={{ scale: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      Hi there 👋
-                    </motion.p>
                   </motion.div>
                 </motion.div>
               </motion.div>

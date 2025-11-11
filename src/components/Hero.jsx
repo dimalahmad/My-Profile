@@ -83,14 +83,6 @@ const Hero = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="space-y-6"
             >
-              <motion.p 
-                className="text-gold text-lg md:text-xl font-medium tracking-wide floating"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                Hello, World! 👋
-              </motion.p>
               
               <motion.h1 
                 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold leading-tight"
@@ -191,28 +183,20 @@ const Hero = () => {
                     src="/assets/profile-front.jpg"
                     alt="Dimal Karim Ahmad - Front"
                     onError={(e) => {
-                      e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=220&background=d4af37&color=000000&bold=true&font-size=0.4`;
+                      e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=350&background=d4af37&color=000000&bold=true&font-size=0.4`;
                     }}
                   />
                 </div>
 
                 {/* Back Side */}
                 <div className="side back">
-                  <div className="text-center space-y-3">
-                    <motion.div
-                      className="text-4xl text-gold"
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      💼
-                    </motion.div>
-                    <div className="text-gold font-heading font-bold text-lg">
-                      Product
-                    </div>
-                    <div className="text-gold font-heading font-bold text-lg">
-                      Analyst
-                    </div>
-                  </div>
+                  <img
+                    src="/assets/profile-back.jpg"
+                    alt="Dimal Karim Ahmad - Front"
+                    onError={(e) => {
+                      e.target.src = `https://ui-avatars.com/api/?name=Dimal+Karim+Ahmad&size=350&background=d4af37&color=000000&bold=true&font-size=0.4`;
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -224,18 +208,18 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2"
+          className="absolute bottom-4 md:bottom-8 inset-x-0 flex flex-col items-center justify-center space-y-1 md:space-y-2 px-4"
         >
-          <p className="text-gold text-sm font-medium tracking-wide">Scroll to explore</p>
+          <p className="text-gold text-xs md:text-sm font-medium tracking-wide text-center">Scroll to explore</p>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gold rounded-full flex justify-center p-1"
+            className="w-5 h-8 md:w-6 md:h-10 border-2 border-gold rounded-full flex justify-center p-1"
           >
             <motion.div
-              animate={{ y: [0, 12, 0] }}
+              animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-gold rounded-full"
+              className="w-0.5 h-2 md:w-1 md:h-3 bg-gold rounded-full"
             />
           </motion.div>
         </motion.div>
