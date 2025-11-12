@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black/30 backdrop-blur-sm border-t border-white/10 pt-8 pb-8">
+    <footer className="bg-black/30 backdrop-blur-sm border-t border-white/10 pt-4 pb-4 w-full" style={{ marginTop: 'auto', flexShrink: 0 }}>
       <div className="container-custom max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           variants={fadeIn("up", 0.1)}

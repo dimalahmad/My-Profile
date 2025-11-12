@@ -163,17 +163,18 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden" style={{ overflowY: 'visible' }}>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden flex flex-col w-full" style={{ overflowY: 'visible', display: 'flex', flexDirection: 'column' }}>
       {/* Navigation */}
       <Navbar />
 
       {/* Main Content */}
-      <main className="min-h-screen overflow-visible" style={{ overflowY: 'visible', minHeight: 'auto' }}>
+      <main className="flex-1 overflow-visible w-full" style={{ overflowY: 'visible', minHeight: 'auto', flex: '1 0 auto' }}>
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
+          className="w-full"
         >
           <Hero />
         </motion.div>
@@ -183,6 +184,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <About />
         </motion.div>
@@ -192,6 +194,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Education />
         </motion.div>
@@ -201,6 +204,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Organizations />
         </motion.div>
@@ -210,6 +214,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Skills />
         </motion.div>
@@ -219,6 +224,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Projects />
         </motion.div>
@@ -228,6 +234,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Certificates />
         </motion.div>
@@ -237,6 +244,7 @@ function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full"
         >
           <Contact />
         </motion.div>

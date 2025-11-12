@@ -41,12 +41,19 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+  }
+  
+  #root > * {
+    width: 100%;
   }
   
   /* Prevent any element from blocking scroll */
   main {
     overflow: visible !important;
     min-height: 100vh;
+    flex: 1 0 auto;
+    width: 100%;
   }
   
   /* Ensure all sections are scrollable even during loading */
@@ -139,6 +146,8 @@
     margin-top: auto;
     display: block;
     visibility: visible;
+    flex-shrink: 0;
+    width: 100%;
   }
   
   /* Mobile and Tablet - Adjust min-heights for smaller screens */
@@ -175,10 +184,6 @@
     #contact {
       min-height: 80vh !important;
     }
-    
-    footer {
-      min-height: 25vh;
-    }
   }
   
   /* Mobile only - Larger min-heights for mobile */
@@ -214,10 +219,6 @@
     
     #contact {
       min-height: 90vh !important;
-    }
-    
-    footer {
-      min-height: 30vh;
     }
   }
   
