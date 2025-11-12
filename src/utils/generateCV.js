@@ -15,7 +15,7 @@ const profileData = {
   position: 'Undergraduate Software Engineering Student, Universitas Gadjah Mada (UGM)',
   tagline: 'Tech & Data Enthusiast — Bridging data, design, and decisions',
   email: 'dimalkarimahmad01@gmail.com',
-  location: 'Yogyakarta, Indonesia (available to work from anywhere)',
+  location: 'Yogyakarta, Indonesia',
   linkedin: 'www.linkedin.com/in/dimal-karim-ahmad',
   github: 'https://github.com/dimalahmad',
   portfolio: 'https://dimal-profile.vercel.app/',
@@ -309,6 +309,60 @@ const checkPageBreak = (doc, currentY, requiredHeight, pageHeight, margin) => {
   return false;
 };
 
+// Helper function to add subtle shadow effect
+const addShadow = (doc, x, y, width, height, radius = 1) => {
+  // Subtle shadow layer using very light gray (simulating 5% opacity)
+  doc.setFillColor(242, 242, 242); // Very light gray instead of alpha
+  doc.roundedRect(x + 0.5, y + 0.5, width, height, radius, radius, 'F');
+};
+
+// Helper function to add gold divider line
+const addDivider = (doc, x, y, width, goldRgb) => {
+  doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
+  doc.setLineWidth(0.2);
+  doc.line(x, y, x + width, y);
+};
+
+// Helper function to add badge/tag
+const addBadge = (doc, text, x, y, goldRgb, fontSize = 6.5) => {
+  doc.setFontSize(fontSize);
+  doc.setFont('helvetica', 'bold');
+  const textWidth = doc.getTextWidth(text);
+  const padding = 2;
+  const badgeHeight = fontSize * 0.6;
+  
+  // Badge background
+  doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
+  doc.roundedRect(x - padding, y - badgeHeight, textWidth + (padding * 2), badgeHeight + 1, 1, 1, 'F');
+  
+  // Badge text
+  doc.setTextColor(0, 0, 0);
+  doc.text(text, x, y);
+  
+  return textWidth + (padding * 2);
+};
+
+// Helper function to add footer with page numbers and date
+const addFooter = (doc, pageNum, totalPages, pageWidth, pageHeight, margin, goldRgb) => {
+  const footerY = pageHeight - margin + 2;
+  
+  // Date stamp
+  const currentDate = new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+  doc.setFontSize(6);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text(`Last Updated: ${currentDate}`, margin, footerY);
+  
+  // Page number - black bold
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 0, 0);
+  doc.text(`Page ${pageNum} of ${totalPages}`, pageWidth - margin, footerY, { align: 'right' });
+};
+
 // Helper function to add new page with modern design
 const addNewPage = (doc, pageWidth, pageHeight, margin, goldRgb) => {
   doc.addPage();
@@ -321,61 +375,27 @@ const addNewPage = (doc, pageWidth, pageHeight, margin, goldRgb) => {
   return margin + 5;
 };
 
-// Helper function to draw rounded rectangle (simulated)
-const drawRoundedBox = (doc, x, y, width, height, goldRgb, fill = false) => {
-  doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-  doc.setLineWidth(0.3);
-  if (fill) {
-    doc.setFillColor(255, 255, 255);
-    doc.roundedRect(x, y, width, height, 1, 1, 'FD');
-  } else {
-    doc.roundedRect(x, y, width, height, 1, 1, 'D');
-  }
-};
-
-// Helper function to add section header with modern design (full width gold background)
-const addSectionHeader = (doc, text, x, y, goldRgb, pageHeight, margin, pageWidth, isLeftColumn = false, skipPageCheck = false) => {
-  // Check if we need new page (skip for first page to avoid gap)
-  if (!skipPageCheck && checkPageBreak(doc, y, 15, pageHeight, margin)) {
+// Helper function to add section header with modern design (full width gold background + shadow)
+const addSectionHeader = (doc, text, x, y, goldRgb, pageHeight, margin, pageWidth, contentWidth, skipPageCheck = false) => {
+  // Check if we need new page
+  if (!skipPageCheck && checkPageBreak(doc, y, 20, pageHeight, margin)) {
     y = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-    // Redraw divider on new page
-    if (!isLeftColumn) {
-      const leftColWidth = 68;
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(x - 68 + leftColWidth + (margin / 2), margin, x - 68 + leftColWidth + (margin / 2), pageHeight - margin);
-    }
   }
+  
+  // Shadow effect
+  addShadow(doc, x - 2, y - 6, contentWidth + 4, 8, 1);
   
   // Full width gold background for section header
-  const colWidth = isLeftColumn ? 68 : (pageWidth - 68 - margin * 3);
   doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-  doc.roundedRect(x - 2, y - 6, colWidth + 4, 8, 1, 1, 'F');
+  doc.roundedRect(x - 2, y - 6, contentWidth + 4, 8, 1, 1, 'F');
   
-  // Text
-  doc.setFontSize(11);
+  // Text with letter spacing effect (simulated with font size)
+  doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
   doc.text(text, x, y);
   
   return y + 10;
-};
-
-// Helper function to add text with gold background (only text width)
-const addTextWithGoldBg = (doc, text, x, y, goldRgb, fontSize = 9, fontStyle = 'bold') => {
-  doc.setFontSize(fontSize);
-  doc.setFont('helvetica', fontStyle);
-  const textWidth = doc.getTextWidth(text);
-  
-  // Gold background only for text width
-  doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-  doc.roundedRect(x - 1, y - 3.5, textWidth + 2, 4, 0.5, 0.5, 'F');
-  
-  // Text
-  doc.setTextColor(0, 0, 0);
-  doc.text(text, x, y);
-  
-  return y + 4.5;
 };
 
 // Generate QR Code as data URL
@@ -398,582 +418,513 @@ const generateQRCode = async (url) => {
 
 // Main function to generate CV PDF with modern design
 export const generateCVPDF = async () => {
-  const doc = new jsPDF({
-    orientation: 'portrait',
-    unit: 'mm',
-    format: 'a4'
-  });
+  try {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+      compress: true
+    });
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 12;
-  const leftColWidth = 68;
-  const rightColWidth = pageWidth - leftColWidth - (margin * 3);
-  const leftColX = margin;
-  const rightColX = leftColX + leftColWidth + margin;
-  let currentY = margin;
-  const goldRgb = hexToRgb(GOLD);
-  const darkGoldRgb = hexToRgb(DARK_GOLD);
+    // Set PDF metadata
+    doc.setProperties({
+      title: 'Dimal Karim Ahmad - CV',
+      subject: 'Curriculum Vitae',
+      author: 'Dimal Karim Ahmad',
+      keywords: 'CV, Resume, Software Engineering, Product Management, Data Analytics',
+      creator: 'Portfolio Website'
+    });
 
-  // Set default font
-  doc.setFont('helvetica');
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    const contentWidth = pageWidth - (margin * 2);
+    const contentX = margin;
+    let currentY = margin;
+    const goldRgb = hexToRgb(GOLD);
+    const darkGoldRgb = hexToRgb(DARK_GOLD);
 
-  // ========== MODERN HEADER SECTION ==========
-  // Gold gradient background
-  doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-  doc.rect(0, 0, pageWidth, 42, 'F');
-  
-  // Dark gold accent line
-  doc.setFillColor(darkGoldRgb.r, darkGoldRgb.g, darkGoldRgb.b);
-  doc.rect(0, 40, pageWidth, 2, 'F');
+    // Set default font
+    doc.setFont('helvetica');
 
-  // Name with shadow effect
-  doc.setTextColor(0, 0, 0);
-  doc.setFontSize(28);
-  doc.setFont('helvetica', 'bold');
-  doc.text(profileData.name, margin, 20);
-
-  // Position
-  doc.setFontSize(9.5);
-  doc.setFont('helvetica', 'normal');
-  doc.text(profileData.position, margin, 26);
-
-  // Tagline
-  doc.setFontSize(8.5);
-  doc.setFont('helvetica', 'italic');
-  doc.text(profileData.tagline, margin, 32);
-
-  // QR Code with border
-  const qrCode = await generateQRCode(profileData.portfolio);
-  if (qrCode) {
-    const qrSize = 28;
-    const qrX = pageWidth - margin - qrSize;
-    const qrY = 8;
+    // ========== ELEGANT HEADER SECTION ==========
+    // Calculate header height based on content
+    const headerPadding = 8;
+    const nameHeight = 16;
+    const positionHeight = 22;
+    const taglineHeight = 28;
+    const contactStartY = 34;
+    const contactLineHeight = 3.8;
+    const maxContactLines = 3; // Max lines in either column
+    const headerBottomPadding = 5;
+    const calculatedHeaderHeight = contactStartY + (maxContactLines * contactLineHeight) + headerBottomPadding;
     
-    // White background for QR
-    doc.setFillColor(255, 255, 255);
-    doc.roundedRect(qrX - 1, qrY - 1, qrSize + 2, qrSize + 2, 1, 1, 'F');
-    
-    doc.addImage(qrCode, 'PNG', qrX, qrY, qrSize, qrSize);
-    
-    // Label
-    doc.setFontSize(6.5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Portfolio', qrX + qrSize / 2, qrY + qrSize + 3, { align: 'center' });
-  }
-
-  currentY = 50;
-
-  // ========== LEFT COLUMN ==========
-  let leftY = currentY;
-
-  // Profile Section with box
-  const profileStartY = leftY;
-  leftY = addSectionHeader(doc, 'PROFILE', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true, true);
-  
-  // Add subtle background for profile content
-  doc.setFillColor(250, 250, 250);
-  doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
-  
-  doc.setFontSize(7.5);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(40, 40, 40);
-  profileData.about.forEach((para, idx) => {
-    if (idx > 0) leftY += 3;
-    // Check page break
-    if (checkPageBreak(doc, leftY, 15, pageHeight, margin)) {
-      leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    const lines = doc.splitTextToSize(para, leftColWidth - 5);
-    doc.text(lines, leftColX, leftY);
-    leftY += lines.length * 3.5;
-  });
-
-  // Add border around profile section
-  const profileEndY = leftY;
-  doc.setDrawColor(220, 220, 220);
-  doc.setLineWidth(0.2);
-  doc.roundedRect(leftColX - 1, profileStartY - 1, leftColWidth + 2, profileEndY - profileStartY + 2, 1, 1, 'D');
-
-  leftY += 8;
-
-  // Contact Section with box
-  const contactStartY = leftY;
-  leftY = addSectionHeader(doc, 'CONTACT', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true);
-  
-  // Add subtle background for contact content
-  doc.setFillColor(250, 250, 250);
-  doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
-  
-  doc.setFontSize(7);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(40, 40, 40);
-  
-  const contactItems = [
-    { label: 'Email:', value: profileData.email },
-    { label: 'Location:', value: profileData.location },
-    { label: 'LinkedIn:', value: profileData.linkedin },
-    { label: 'GitHub:', value: profileData.github.replace('https://', '') },
-    { label: 'Portfolio:', value: profileData.portfolio.replace('https://', '').replace('/', '') },
-    { label: 'Status:', value: profileData.status }
-  ];
-  
-  contactItems.forEach((item, idx) => {
-    if (idx > 0) leftY += 3;
-    
-    // Check page break
-    if (checkPageBreak(doc, leftY, 10, pageHeight, margin)) {
-      leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Gold bullet point
-    doc.setFontSize(6);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.text('•', leftColX, leftY);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(40, 40, 40);
-    doc.text(item.label, leftColX + 3, leftY);
-    doc.setFont('helvetica', 'normal');
-    const labelWidth = doc.getTextWidth(item.label) + 3;
-    const valueX = leftColX + labelWidth + 2;
-    const valueWidth = leftColWidth - labelWidth - 2;
-    const valueLines = doc.splitTextToSize(item.value, valueWidth);
-    doc.text(valueLines, valueX, leftY);
-    leftY += valueLines.length * 3.5;
-  });
-  
-  // Status description
-  leftY += 2;
-  if (checkPageBreak(doc, leftY, 5, pageHeight, margin)) {
-    leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-    doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.setLineWidth(0.2);
-    doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-  }
-  doc.setFontSize(6.5);
-  doc.setFont('helvetica', 'italic');
-  doc.setTextColor(80, 80, 80);
-  const statusLines = doc.splitTextToSize(profileData.statusDesc, leftColWidth - 5);
-  doc.text(statusLines, leftColX, leftY);
-  leftY += statusLines.length * 3.5;
-  
-  // Add border around contact section
-  const contactEndY = leftY;
-  doc.setDrawColor(220, 220, 220);
-  doc.setLineWidth(0.2);
-  doc.roundedRect(leftColX - 1, contactStartY - 1, leftColWidth + 2, contactEndY - contactStartY + 2, 1, 1, 'D');
-
-  leftY += 8;
-
-  // Core Values Section
-  const valuesStartY = leftY;
-  leftY = addSectionHeader(doc, 'CORE VALUES', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true);
-  
-  // Add subtle background for values content
-  doc.setFillColor(250, 250, 250);
-  doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
-  
-  // Check page break before values
-  if (checkPageBreak(doc, leftY, 25, pageHeight, margin)) {
-    leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-    doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.setLineWidth(0.2);
-    doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-  }
-  
-  doc.setFontSize(6.5);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(40, 40, 40);
-  profileData.coreValues.forEach((value, idx) => {
-    if (idx > 0 && idx % 2 === 0) leftY += 2;
-    const xPos = idx % 2 === 0 ? leftColX : leftColX + leftColWidth / 2 + 2;
-    if (idx % 2 === 0 && idx > 0) leftY += 3.5;
-    
-    // Gold bullet point
-    doc.setFontSize(6);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.text('•', xPos, leftY);
-    
-    doc.setFontSize(6.5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(40, 40, 40);
-    doc.text(value, xPos + 3, leftY);
-    
-    if (idx % 2 === 1) leftY += 3.5;
-  });
-  if (profileData.coreValues.length % 2 === 1) leftY += 3.5;
-  
-  // Add border around core values section
-  const valuesEndY = leftY;
-  doc.setDrawColor(220, 220, 220);
-  doc.setLineWidth(0.2);
-  doc.roundedRect(leftColX - 1, valuesStartY - 1, leftColWidth + 2, valuesEndY - valuesStartY + 2, 1, 1, 'D');
-
-  leftY += 8;
-
-  // Skills Section
-  const skillsStartY = leftY;
-  leftY = addSectionHeader(doc, 'SKILLS', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true);
-  
-  // Add subtle background for skills content
-  doc.setFillColor(250, 250, 250);
-  doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
-  
-  const skillCategories = [
-    { name: 'Programming', skills: skillsData.programming },
-    { name: 'Frameworks', skills: skillsData.frameworks },
-    { name: 'Design', skills: skillsData.design },
-    { name: 'Data & Analytics', skills: skillsData.data },
-    { name: 'Tools', skills: skillsData.tools },
-    { name: 'Product & Research', skills: skillsData.product.slice(0, 5) }
-  ];
-  
-  skillCategories.forEach((category, idx) => {
-    if (idx > 0) leftY += 3;
-    
-    // Check page break
-    if (checkPageBreak(doc, leftY, 10, pageHeight, margin)) {
-      leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Category name with gold bullet and accent
-    doc.setFontSize(6);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.text('•', leftColX, leftY);
-    
-    doc.setFontSize(6.5);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(40, 40, 40);
-    doc.text(`${category.name}:`, leftColX + 3, leftY);
-    
-    // Gold accent line
-    doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.setLineWidth(0.2);
-    doc.line(leftColX, leftY + 1.5, leftColX + 20, leftY + 1.5);
-    
-    leftY += 3.5;
-    doc.setFont('helvetica', 'normal');
-    const skillText = category.skills.join(', ');
-    const skillLines = doc.splitTextToSize(skillText, leftColWidth - 5);
-    doc.text(skillLines, leftColX, leftY);
-    leftY += skillLines.length * 3;
-  });
-  
-  // Add border around skills section
-  const skillsEndY = leftY;
-  doc.setDrawColor(220, 220, 220);
-  doc.setLineWidth(0.2);
-  doc.roundedRect(leftColX - 1, skillsStartY - 1, leftColWidth + 2, skillsEndY - skillsStartY + 2, 1, 1, 'D');
-
-  leftY += 8;
-
-  // Certificates Section
-  const certsStartY = leftY;
-  leftY = addSectionHeader(doc, 'CERTIFICATES', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true);
-  
-  // Add subtle background for certificates content
-  doc.setFillColor(250, 250, 250);
-  doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
-  
-  doc.setFontSize(6.5);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(40, 40, 40);
-  certificatesData.slice(0, 6).forEach((cert, idx) => {
-    if (idx > 0) leftY += 2;
-    
-    // Check page break
-    if (checkPageBreak(doc, leftY, 8, pageHeight, margin)) {
-      leftY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Gold bullet point
-    doc.setFontSize(6);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.text('•', leftColX, leftY);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(6.5);
-    doc.setTextColor(40, 40, 40);
-    doc.text(`${cert.name}`, leftColX + 3, leftY);
-    leftY += 3;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(6);
-    doc.setTextColor(80, 80, 80);
-    doc.text(`${cert.issuer} (${cert.year})`, leftColX + 5, leftY);
-    leftY += 4;
-  });
-  
-  // Add border around certificates section
-  const certsEndY = leftY;
-  doc.setDrawColor(220, 220, 220);
-  doc.setLineWidth(0.2);
-  doc.roundedRect(leftColX - 1, certsStartY - 1, leftColWidth + 2, certsEndY - certsStartY + 2, 1, 1, 'D');
-
-  // ========== RIGHT COLUMN ==========
-  // Start right column at the same Y as left column to avoid gap
-  let rightY = currentY;
-
-  // Education Section - start immediately without gap (same Y as left column)
-  // Use the same function as left column for consistency, skip page check for first page
-  rightY = addSectionHeader(doc, 'EDUCATION', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false, true);
-  
-  educationData.forEach((edu, index) => {
-    if (index > 0) {
-      rightY += 3;
-    }
-    
-    // Check page break
-    if (checkPageBreak(doc, rightY, 30, pageHeight, margin)) {
-      rightY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      // Redraw divider
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Institution name with gold background (only text width)
-    doc.setFontSize(9.5);
-    doc.setFont('helvetica', 'bold');
-    const instTextWidth = doc.getTextWidth(edu.institution);
+    // Gold gradient background - compact height
     doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.roundedRect(rightColX - 1, rightY - 4, instTextWidth + 2, 5, 0.5, 0.5, 'F');
+    doc.rect(0, 0, pageWidth, calculatedHeaderHeight, 'F');
     
+    // Dark gold accent line at bottom
+    doc.setFillColor(darkGoldRgb.r, darkGoldRgb.g, darkGoldRgb.b);
+    doc.rect(0, calculatedHeaderHeight - 2, pageWidth, 2, 'F');
+
+    // Left column for name and contact
+    const leftColX = margin;
+    
+    // Name - larger and more prominent
     doc.setTextColor(0, 0, 0);
-    doc.text(edu.institution, rightColX, rightY);
-    
-    rightY += 6;
+    doc.setFontSize(30);
+    doc.setFont('helvetica', 'bold');
+    doc.text(profileData.name, leftColX, nameHeight);
+
+    // Position - elegant spacing
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(profileData.position, leftColX, positionHeight);
+
+    // Tagline - italic with better spacing
     doc.setFontSize(8);
+    doc.setFont('helvetica', 'italic');
+    doc.text(profileData.tagline, leftColX, taglineHeight);
+
+    // Contact Information - compact two columns layout with text labels
+    doc.setFontSize(6.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(0, 0, 0);
+    let contactY = contactStartY;
+    const contactLabelWidth = 18;
+    const contactCol1X = leftColX;
+    const contactCol2X = leftColX + 80; // Second column for contact
+    
+    // Helper function to draw contact item with text label
+    const drawContactItem = (label, value, x, y) => {
+      // Label in bold
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(6.5);
+      doc.setTextColor(0, 0, 0);
+      doc.text(label, x, y);
+      // Value
+      doc.setFont('helvetica', 'normal');
+      doc.text(value, x + contactLabelWidth, y);
+    };
+    
+    // Column 1: Email, Location, LinkedIn
+    // Email
+    drawContactItem('Email:', profileData.email, contactCol1X, contactY);
+    contactY += contactLineHeight;
+    
+    // Location
+    const locationText = profileData.location.length > 40 ? profileData.location.substring(0, 37) + '...' : profileData.location;
+    drawContactItem('Location:', locationText, contactCol1X, contactY);
+    contactY += contactLineHeight;
+    
+    // LinkedIn
+    drawContactItem('LinkedIn:', profileData.linkedin, contactCol1X, contactY);
+    
+    // Column 2: GitHub, Portfolio, Status
+    contactY = contactStartY;
+    
+    // GitHub
+    drawContactItem('GitHub:', profileData.github.replace('https://', ''), contactCol2X, contactY);
+    contactY += contactLineHeight;
+    
+    // Portfolio
+    const portfolioText = profileData.portfolio.replace('https://', '').replace('/', '');
+    drawContactItem('Portfolio:', portfolioText, contactCol2X, contactY);
+    contactY += contactLineHeight;
+    
+    // Status
+    drawContactItem('Status:', profileData.status, contactCol2X, contactY);
+
+    // QR Code with elegant border (right side)
+    const qrCode = await generateQRCode(profileData.portfolio);
+    if (qrCode) {
+      const qrSize = 28;
+      const qrX = pageWidth - margin - qrSize;
+      const qrY = 10;
+      
+      // Simple white background with border
+      doc.setFillColor(255, 255, 255);
+      doc.roundedRect(qrX - 1.5, qrY - 1.5, qrSize + 3, qrSize + 3, 1.5, 1.5, 'F');
+      
+      // Border
+      doc.setDrawColor(0, 0, 0);
+      doc.setLineWidth(0.3);
+      doc.roundedRect(qrX - 1.5, qrY - 1.5, qrSize + 3, qrSize + 3, 1.5, 1.5, 'D');
+      
+      // QR code
+      doc.addImage(qrCode, 'PNG', qrX, qrY, qrSize, qrSize);
+      
+      // Label
+      doc.setFontSize(6.5);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('Portfolio', qrX + qrSize / 2, qrY + qrSize + 3.5, { align: 'center' });
+    }
+
+    currentY = calculatedHeaderHeight + 8;
+
+    // ========== SINGLE COLUMN LAYOUT (matching website order) ==========
+    
+    // 1. PROFILE (About) Section
+    currentY = addSectionHeader(doc, 'PROFILE', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth, true);
+    
+    doc.setFontSize(8.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(40, 40, 40);
-    const degreeLines = doc.splitTextToSize(edu.degree, rightColWidth - 5);
-    doc.text(degreeLines, rightColX, rightY);
-    rightY += degreeLines.length * 3.5;
+    const lineHeight = 4.5; // Improved line height for readability
+    profileData.about.forEach((para, idx) => {
+      if (idx > 0) currentY += 4; // Better spacing between paragraphs
+      // Check page break
+      if (checkPageBreak(doc, currentY, 15, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      const lines = doc.splitTextToSize(para, contentWidth - 5);
+      doc.text(lines, contentX, currentY);
+      currentY += lines.length * lineHeight;
+    });
+
+    currentY += 8;
+
+    // 2. EDUCATION Section
+    currentY = addSectionHeader(doc, 'EDUCATION', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
     
-    doc.setFontSize(7);
-    if (edu.gpa) {
+    educationData.forEach((edu, index) => {
+      if (index > 0) {
+        // Add divider between education entries
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 35, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Institution name with gold background (only text width) + shadow
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      const instTextWidth = doc.getTextWidth(edu.institution);
+      addShadow(doc, contentX - 1, currentY - 4, instTextWidth + 2, 5, 0.5);
+      doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
+      doc.roundedRect(contentX - 1, currentY - 4, instTextWidth + 2, 5, 0.5, 0.5, 'F');
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(edu.institution, contentX, currentY);
+      
+      currentY += 6;
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+      const degreeLines = doc.splitTextToSize(edu.degree, contentWidth - 5);
+      doc.text(degreeLines, contentX, currentY);
+      currentY += degreeLines.length * 4.5; // Better line height
+      
+      doc.setFontSize(8);
+      if (edu.gpa) {
+        // Highlight GPA with emphasis - black bold
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`GPA: ${edu.gpa}`, contentX, currentY);
+        currentY += 4.5;
+        doc.setTextColor(40, 40, 40);
+        doc.setFont('helvetica', 'normal');
+      }
+      doc.text(edu.period, contentX, currentY);
+      doc.text(edu.location, contentX + 50, currentY);
+      currentY += 4.5;
+      
+      // Description
+      doc.setFontSize(7.5);
+      const descLines = doc.splitTextToSize(edu.description, contentWidth - 5);
+      doc.text(descLines, contentX, currentY);
+      currentY += descLines.length * 4; // Better line height
+    });
+
+    currentY += 8;
+
+    // 3. ORGANIZATIONS Section
+    currentY = addSectionHeader(doc, 'ORGANIZATIONS', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
+    
+    organizationsData.forEach((org, index) => {
+      if (index > 0) {
+        // Add divider between organization entries
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 30, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Position with gold background (only text width) + shadow
+      doc.setFontSize(9.5);
+      doc.setFont('helvetica', 'bold');
+      const posLines = doc.splitTextToSize(org.position, contentWidth - 5);
+      const firstLineText = posLines[0];
+      const posTextWidth = doc.getTextWidth(firstLineText);
+      addShadow(doc, contentX - 1, currentY - 3.5, posTextWidth + 2, 4, 0.5);
+      doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
+      doc.roundedRect(contentX - 1, currentY - 3.5, posTextWidth + 2, 4, 0.5, 0.5, 'F');
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(posLines, contentX, currentY);
+      currentY += posLines.length * 4.5;
+      
+      currentY += 2;
+      doc.setFontSize(8.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+      doc.text(org.organization, contentX, currentY);
+      currentY += 4.5;
+      
+      doc.setFontSize(7.5);
+      doc.text(org.period, contentX, currentY);
+      currentY += 4.5;
+      
+      // Description
+      doc.setFontSize(7.5);
+      const descLines = doc.splitTextToSize(org.description, contentWidth - 5);
+      doc.text(descLines, contentX, currentY);
+      currentY += descLines.length * 4; // Better line height
+      
+      // Skills
+      if (org.skills && org.skills.length > 0) {
+        doc.setFontSize(7);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor(100, 100, 100);
+        const skillText = org.skills.slice(0, 5).join(' • ');
+        const skillLines = doc.splitTextToSize(skillText, contentWidth - 5);
+        doc.text(skillLines, contentX, currentY);
+        currentY += skillLines.length * 3.5;
+      }
+    });
+
+    currentY += 8;
+
+    // 4. COMPETITIONS Section
+    currentY = addSectionHeader(doc, 'COMPETITIONS', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
+    
+    competitionsData.forEach((comp, index) => {
+      if (index > 0) {
+        // Add divider between competition entries
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 30, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Competition name with gold background (only text width) + shadow
+      doc.setFontSize(9.5);
+      doc.setFont('helvetica', 'bold');
+      const compNameLines = doc.splitTextToSize(comp.name, contentWidth - 5);
+      const firstLineText = compNameLines[0];
+      const compNameTextWidth = doc.getTextWidth(firstLineText);
+      addShadow(doc, contentX - 1, currentY - 3.5, compNameTextWidth + 2, 4, 0.5);
+      doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
+      doc.roundedRect(contentX - 1, currentY - 3.5, compNameTextWidth + 2, 4, 0.5, 0.5, 'F');
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(compNameLines, contentX, currentY);
+      currentY += compNameLines.length * 4.5;
+      
+      currentY += 2;
+      doc.setFontSize(8.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+      doc.text(comp.division, contentX, currentY);
+      currentY += 4.5;
+      
+      doc.setFontSize(7.5);
+      doc.text(`${comp.organization} • ${comp.period}`, contentX, currentY);
+      currentY += 4.5;
+      
+      // Description
+      doc.setFontSize(7.5);
+      const descLines = doc.splitTextToSize(comp.description, contentWidth - 5);
+      doc.text(descLines, contentX, currentY);
+      currentY += descLines.length * 4; // Better line height
+      
+      // Skills
+      if (comp.skills && comp.skills.length > 0) {
+        doc.setFontSize(7);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor(100, 100, 100);
+        const skillText = comp.skills.slice(0, 5).join(' • ');
+        const skillLines = doc.splitTextToSize(skillText, contentWidth - 5);
+        doc.text(skillLines, contentX, currentY);
+        currentY += skillLines.length * 3.5;
+      }
+    });
+
+    currentY += 8;
+
+    // 5. SKILLS Section
+    currentY = addSectionHeader(doc, 'SKILLS', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
+    
+    const skillCategories = [
+      { name: 'Programming', skills: skillsData.programming },
+      { name: 'Frameworks', skills: skillsData.frameworks },
+      { name: 'Design', skills: skillsData.design },
+      { name: 'Data & Analytics', skills: skillsData.data },
+      { name: 'Tools', skills: skillsData.tools },
+      { name: 'Product & Research', skills: skillsData.product }
+    ];
+    
+    skillCategories.forEach((category, idx) => {
+      if (idx > 0) {
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 10, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Category name with gold bullet
+      doc.setFontSize(7);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.text(`GPA: ${edu.gpa}`, rightColX, rightY);
-      rightY += 3.5;
+      doc.text('•', contentX, currentY);
+      
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'bold');
       doc.setTextColor(40, 40, 40);
+      doc.text(`${category.name}:`, contentX + 4, currentY);
+      
+      currentY += 4.5;
       doc.setFont('helvetica', 'normal');
-    }
-    doc.text(edu.period, rightColX, rightY);
-    doc.text(edu.location, rightColX + 40, rightY);
-    rightY += 3.5;
-    
-    // Description
-    doc.setFontSize(6.5);
-    const descLines = doc.splitTextToSize(edu.description, rightColWidth - 5);
-    doc.text(descLines, rightColX, rightY);
-    rightY += descLines.length * 3 + 2;
-  });
+      doc.setFontSize(7.5);
+      const skillText = category.skills.join(', ');
+      const skillLines = doc.splitTextToSize(skillText, contentWidth - 5);
+      doc.text(skillLines, contentX, currentY);
+      currentY += skillLines.length * 4.5; // Better line height
+    });
 
-  rightY += 3;
+    currentY += 8;
 
-  // Organizations Section
-  rightY = addSectionHeader(doc, 'ORGANIZATIONS', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false);
-  
-  organizationsData.forEach((org, index) => {
-    if (index > 0) {
-      rightY += 2;
-    }
+    // 6. FEATURED PROJECTS Section
+    currentY = addSectionHeader(doc, 'FEATURED PROJECTS', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
     
-    // Check page break
-    if (checkPageBreak(doc, rightY, 25, pageHeight, margin)) {
-      rightY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      // Redraw divider
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Position with gold background (only text width)
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'bold');
-    const posLines = doc.splitTextToSize(org.position, rightColWidth - 5);
-    const firstLineText = posLines[0];
-    const posTextWidth = doc.getTextWidth(firstLineText);
-    doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.roundedRect(rightColX - 1, rightY - 3.5, posTextWidth + 2, 4, 0.5, 0.5, 'F');
-    
-    doc.setTextColor(0, 0, 0);
-    doc.text(posLines, rightColX, rightY);
-    rightY += posLines.length * 3.5;
-    
-    rightY += 2;
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(40, 40, 40);
-    doc.text(org.organization, rightColX, rightY);
-    rightY += 3.5;
-    
-    doc.setFontSize(7);
-    doc.text(org.period, rightColX, rightY);
-    rightY += 3.5;
-    
-    // Description
-    doc.setFontSize(6.5);
-    const descLines = doc.splitTextToSize(org.description, rightColWidth - 5);
-    doc.text(descLines, rightColX, rightY);
-    rightY += descLines.length * 3 + 2;
-    
-    // Skills
-    if (org.skills && org.skills.length > 0) {
-      doc.setFontSize(6);
-      doc.setFont('helvetica', 'italic');
-      doc.setTextColor(100, 100, 100);
-      const skillText = org.skills.slice(0, 4).join(' • ');
-      const skillLines = doc.splitTextToSize(skillText, rightColWidth - 5);
-      doc.text(skillLines, rightColX, rightY);
-      rightY += skillLines.length * 2.5 + 1;
-    }
-  });
+    projectsData.forEach((project, index) => {
+      if (index > 0) {
+        // Add divider between project entries
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 35, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Project title with gold background (only text width) + shadow
+      doc.setFontSize(9.5);
+      doc.setFont('helvetica', 'bold');
+      const titleLines = doc.splitTextToSize(project.title, contentWidth - 5);
+      const firstLineText = titleLines[0];
+      const titleTextWidth = doc.getTextWidth(firstLineText);
+      addShadow(doc, contentX - 1, currentY - 4, titleTextWidth + 2, 5, 0.5);
+      doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
+      doc.roundedRect(contentX - 1, currentY - 4, titleTextWidth + 2, 5, 0.5, 0.5, 'F');
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(titleLines, contentX, currentY);
+      currentY += titleLines.length * 4.5;
+      
+      currentY += 2;
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+      doc.text(`${project.role} • ${project.period}`, contentX, currentY);
+      currentY += 4.5;
+      
+      // Enhanced type badge with better styling
+      const badgeX = contentX;
+      const badgeY = currentY;
+      addBadge(doc, project.type, badgeX, badgeY, goldRgb, 6.5);
+      currentY += 5;
+      
+      // Description
+      doc.setFontSize(7.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(40, 40, 40);
+      const descLines = doc.splitTextToSize(project.description, contentWidth - 5);
+      doc.text(descLines, contentX, currentY);
+      currentY += descLines.length * 4; // Better line height
+      
+      // Skills
+      if (project.skills && project.skills.length > 0) {
+        doc.setFontSize(7);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor(100, 100, 100);
+        const skillText = project.skills.slice(0, 6).join(' • ');
+        const skillLines = doc.splitTextToSize(skillText, contentWidth - 5);
+        doc.text(skillLines, contentX, currentY);
+        currentY += skillLines.length * 3.5;
+      }
+    });
 
-  rightY += 3;
+    currentY += 8;
 
-  // Competitions Section
-  rightY = addSectionHeader(doc, 'COMPETITIONS', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false);
-  
-  competitionsData.forEach((comp, index) => {
-    if (index > 0) {
-      rightY += 2;
-    }
-    
-    // Check page break
-    if (checkPageBreak(doc, rightY, 20, pageHeight, margin)) {
-      rightY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      // Redraw divider
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Competition name with gold background (only text width)
-    doc.setFontSize(8.5);
-    doc.setFont('helvetica', 'bold');
-    const compTextWidth = doc.getTextWidth(comp.name);
-    doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.roundedRect(rightColX - 1, rightY - 3.5, compTextWidth + 2, 4, 0.5, 0.5, 'F');
-    
-    doc.setTextColor(0, 0, 0);
-    doc.text(comp.name, rightColX, rightY);
-    rightY += 3.5;
+    // 7. CERTIFICATES Section
+    currentY = addSectionHeader(doc, 'CERTIFICATES', contentX, currentY, goldRgb, pageHeight, margin, pageWidth, contentWidth);
     
     doc.setFontSize(7.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(40, 40, 40);
-    doc.text(`${comp.division} • ${comp.organization}`, rightColX, rightY);
-    rightY += 3.5;
-    
-    doc.setFontSize(7);
-    doc.text(comp.period, rightColX, rightY);
-    rightY += 3.5;
-    
-    // Description
-    doc.setFontSize(6.5);
-    const descLines = doc.splitTextToSize(comp.description, rightColWidth - 5);
-    doc.text(descLines, rightColX, rightY);
-    rightY += descLines.length * 3 + 2;
-  });
+    certificatesData.forEach((cert, idx) => {
+      if (idx > 0) {
+        currentY += 2;
+        addDivider(doc, contentX, currentY, contentWidth, goldRgb);
+        currentY += 4;
+      }
+      
+      // Check page break
+      if (checkPageBreak(doc, currentY, 8, pageHeight, margin)) {
+        currentY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
+      }
+      
+      // Gold bullet point
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
+      doc.text('•', contentX, currentY);
+      
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(40, 40, 40);
+      doc.text(`${cert.name}`, contentX + 4, currentY);
+      currentY += 4;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7);
+      doc.setTextColor(80, 80, 80);
+      doc.text(`${cert.issuer} (${cert.year})`, contentX + 6, currentY);
+      currentY += 4.5;
+    });
 
-  rightY += 3;
+    // Calculate total pages and add footer to last page
+    const totalPages = doc.internal.getNumberOfPages();
+    
+    // Add footer to all pages
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      addFooter(doc, i, totalPages, pageWidth, pageHeight, margin, goldRgb);
+    }
 
-  // Projects Section
-  rightY = addSectionHeader(doc, 'FEATURED PROJECTS', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false);
-  
-  projectsData.forEach((project, index) => {
-    if (index > 0) {
-      rightY += 2;
-    }
-    
-    // Check page break
-    if (checkPageBreak(doc, rightY, 30, pageHeight, margin)) {
-      rightY = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
-      // Redraw divider
-      doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-      doc.setLineWidth(0.2);
-      doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
-    }
-    
-    // Project title with gold background (only text width)
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'bold');
-    const titleLines = doc.splitTextToSize(project.title, rightColWidth - 5);
-    const firstLineText = titleLines[0];
-    const titleTextWidth = doc.getTextWidth(firstLineText);
-    doc.setFillColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.roundedRect(rightColX - 1, rightY - 4, titleTextWidth + 2, 5, 0.5, 0.5, 'F');
-    
-    doc.setTextColor(0, 0, 0);
-    doc.text(titleLines, rightColX, rightY);
-    rightY += titleLines.length * 3.5;
-    
-    rightY += 2;
-    doc.setFontSize(7.5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(40, 40, 40);
-    doc.text(`${project.role} • ${project.period}`, rightColX, rightY);
-    rightY += 3.5;
-    
-    // Type badge
-    doc.setFontSize(6.5);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.text(`[${project.type}]`, rightColX, rightY);
-    rightY += 3.5;
-    
-    // Description
-    doc.setFontSize(6.5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(40, 40, 40);
-    const descLines = doc.splitTextToSize(project.description, rightColWidth - 5);
-    doc.text(descLines, rightColX, rightY);
-    rightY += descLines.length * 3 + 2;
-    
-    // Skills
-    if (project.skills && project.skills.length > 0) {
-      doc.setFontSize(6);
-      doc.setFont('helvetica', 'italic');
-      doc.setTextColor(100, 100, 100);
-      const skillText = project.skills.slice(0, 5).join(' • ');
-      const skillLines = doc.splitTextToSize(skillText, rightColWidth - 5);
-      doc.text(skillLines, rightColX, rightY);
-      rightY += skillLines.length * 2.5 + 1;
-    }
-  });
-
-  // Add gold divider line between columns on all pages
-  const totalPages = doc.internal.pages.length - 1;
-  for (let i = 1; i <= totalPages; i++) {
-    doc.setPage(i);
-    doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
-    doc.setLineWidth(0.2);
-    const startY = i === 1 ? currentY - 5 : margin;
-    doc.line(leftColX + leftColWidth + (margin / 2), startY, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
+    // Save PDF
+    doc.save('Dimal_Karim_Ahmad_CV.pdf');
+  } catch (error) {
+    console.error('Error generating CV PDF:', error);
+    throw error; // Re-throw to be caught by caller
   }
-  
-  // Set back to last page
-  doc.setPage(totalPages);
-
-  // Save PDF
-  doc.save('Dimal_Karim_Ahmad_CV.pdf');
 };
