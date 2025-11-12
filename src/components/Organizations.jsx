@@ -286,7 +286,7 @@ const Organizations = () => {
                   <motion.div
                     key={`separator-${org.id}`}
                     variants={fadeIn("down", 0.1)}
-                    className="col-span-1 md:col-span-2 mb-4 md:mb-8"
+                    className="col-span-1 md:col-span-2 mt-12 md:mt-16 mb-4 md:mb-8"
                   >
                     <div className="flex items-center justify-center mb-6 md:mb-8">
                       <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-24 md:w-32"></div>

@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer } from '../utils/motion';
+import { 
+  FaBullseye, 
+  FaChartLine, 
+  FaRocket, 
+  FaPalette, 
+  FaHandshake, 
+  FaSyncAlt 
+} from 'react-icons/fa';
 
 const About = () => {
   const [age, setAge] = useState({
@@ -137,7 +145,7 @@ const About = () => {
               transition={{ delay: 0.2 }}
               className="text-xl sm:text-2xl md:text-3xl text-white leading-relaxed font-medium text-center lg:text-left"
             >
-              Hi there! I'm <span className="text-gradient-premium font-heading font-bold">Dimal Karim Ahmad</span> 👋
+              Hi there! I'm <span className="text-gradient-premium font-heading font-bold">Dimal Karim Ahmad</span>
             </motion.p>
 
             <motion.p
@@ -295,25 +303,34 @@ const About = () => {
             
             <div className="grid grid-cols-2 gap-3 md:gap-4 flex-1">
               {[
-                { icon: '🎯', text: 'Goal-Oriented' },
-                { icon: '🧠', text: 'Analytical' },
-                { icon: '🚀', text: 'Growth-Minded' },
-                { icon: '🎨', text: 'Creative-Driven' },
-                { icon: '🤝', text: 'Collaborative' },
-                { icon: '🔄', text: 'Adaptable' }
-              ].map((trait, index) => (
-                <motion.div
-                  key={trait.text}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="text-center p-3 md:p-4 rounded-lg bg-gold/5 border border-gold/20 flex flex-col justify-center"
-                >
-                  <div className="text-xl md:text-2xl mb-1 md:mb-2">{trait.icon}</div>
-                  <div className="text-white font-medium text-xs sm:text-sm break-words">{trait.text}</div>
-                </motion.div>
-              ))}
+                { icon: FaBullseye, text: 'Goal-Oriented' },
+                { icon: FaChartLine, text: 'Analytical' },
+                { icon: FaRocket, text: 'Growth-Minded' },
+                { icon: FaPalette, text: 'Creative-Driven' },
+                { icon: FaHandshake, text: 'Collaborative' },
+                { icon: FaSyncAlt, text: 'Adaptable' }
+              ].map((trait, index) => {
+                const IconComponent = trait.icon;
+                return (
+                  <motion.div
+                    key={trait.text}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="text-center p-3 md:p-4 rounded-lg bg-gold/5 border border-gold/20 flex flex-col justify-center group"
+                  >
+                    <motion.div 
+                      className="text-gold mb-1 md:mb-2 flex justify-center"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <IconComponent className="text-xl md:text-2xl" />
+                    </motion.div>
+                    <div className="text-white font-medium text-xs sm:text-sm break-words group-hover:text-gold transition-colors duration-300">{trait.text}</div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>

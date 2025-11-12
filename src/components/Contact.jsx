@@ -1,22 +1,23 @@
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer } from '../utils/motion';
+import { FaMapMarkerAlt, FaBriefcase, FaClock } from 'react-icons/fa';
 
 const Contact = () => {
   const contactInfo = [
     {
-      icon: '📍',
+      icon: FaMapMarkerAlt,
       title: 'Location',
       value: 'Yogyakarta, Indonesia',
       description: 'Available to work from anywhere',
     },
     {
-      icon: '💼',
+      icon: FaBriefcase,
       title: 'Status',
       value: 'Open to Opportunities',
       description: 'Product Analyst, Product Management, or Data-related roles',
     },
     {
-      icon: '🕒',
+      icon: FaClock,
       title: 'Response Time',
       value: '24/7',
       description: 'Usually respond within a few hours',
@@ -144,38 +145,47 @@ const Contact = () => {
             animate="show"
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 md:mb-16"
           >
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={info.title}
-                variants={fadeIn("up", index * 0.1)}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: '0 12px 40px rgba(212, 175, 55, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.3)',
-                }}
-                className="relative group p-6 rounded-2xl bg-gradient-to-br from-gold/5 via-gold/3 to-transparent border border-gold/20 backdrop-blur-sm transition-all duration-300 cursor-pointer"
-                style={{
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1)',
-                  backgroundColor: 'rgba(26, 26, 26, 0.6)',
-                }}
-              >
-                {/* Glass effect on hover */}
+            {contactInfo.map((info, index) => {
+              const IconComponent = info.icon;
+              return (
                 <motion.div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))',
-                    boxShadow: 'inset 0 0 60px rgba(212, 175, 55, 0.1)',
+                  key={info.title}
+                  variants={fadeIn("up", index * 0.1)}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -5,
+                    boxShadow: '0 12px 40px rgba(212, 175, 55, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.3)',
                   }}
-                />
-                
-                <div className="relative z-10 text-center">
-                  <div className="text-4xl mb-4">{info.icon}</div>
-                  <h3 className="text-gold font-semibold text-lg mb-2">{info.title}</h3>
-                  <p className="text-white font-medium text-base mb-2">{info.value}</p>
-                  <p className="text-gray-400 text-sm">{info.description}</p>
-                </div>
-              </motion.div>
-            ))}
+                  className="relative group p-6 rounded-2xl bg-gradient-to-br from-gold/5 via-gold/3 to-transparent border border-gold/20 backdrop-blur-sm transition-all duration-300 cursor-pointer"
+                  style={{
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1)',
+                    backgroundColor: 'rgba(26, 26, 26, 0.6)',
+                  }}
+                >
+                  {/* Glass effect on hover */}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))',
+                      boxShadow: 'inset 0 0 60px rgba(212, 175, 55, 0.1)',
+                    }}
+                  />
+                  
+                  <div className="relative z-10 text-center">
+                    <motion.div 
+                      className="text-gold mb-4 flex justify-center"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <IconComponent className="text-4xl" />
+                    </motion.div>
+                    <h3 className="text-gold font-semibold text-lg mb-2">{info.title}</h3>
+                    <p className="text-white font-medium text-base mb-2">{info.value}</p>
+                    <p className="text-gray-400 text-sm">{info.description}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* Social Links */}

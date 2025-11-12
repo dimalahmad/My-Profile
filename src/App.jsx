@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Education from './components/Education';
 import Organizations from './components/Organizations';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -184,6 +185,15 @@ function App() {
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <About />
+        </motion.div>
+
+        {/* Education Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <Education />
         </motion.div>
 
         {/* Organizations Section */}
