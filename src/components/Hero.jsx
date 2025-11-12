@@ -154,7 +154,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4 pb-16 md:pb-0 justify-center md:justify-start"
             >
               <motion.button
                 onClick={scrollToProjects}
@@ -255,7 +255,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-4 md:bottom-8 inset-x-0 flex flex-col items-center justify-center space-y-1 md:space-y-2 px-4"
+          className="absolute bottom-2 md:bottom-8 inset-x-0 flex flex-col items-center justify-center space-y-1 md:space-y-2 px-4 z-20"
         >
           <p className="text-gold text-xs md:text-sm font-medium tracking-wide text-center">Scroll to explore</p>
           <motion.div
