@@ -80,24 +80,24 @@ const Hero = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-20" style={{ minHeight: '100vh', height: 'auto' }}>
+        <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center py-12 md:py-16 lg:py-20" style={{ minHeight: '100vh', height: 'auto' }}>
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-8 text-center lg:text-left px-6 lg:px-0"
+            className="space-y-6 md:space-y-8 text-center md:text-left"
           >
             {/* Static Hero Text */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
               
               <motion.h1 
-                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 1 }}
@@ -116,7 +116,7 @@ const Hero = () => {
 
               {/* Typewriter Job Title */}
               <motion.div 
-                className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-heading font-medium text-gold tracking-wide min-h-[3rem] md:min-h-[4rem]"
+                className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-heading font-medium text-gold tracking-wide min-h-[3rem] sm:min-h-[3.5rem] md:min-h-[4rem]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
@@ -143,7 +143,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
-                className="text-base md:text-lg lg:text-xl text-gray-400 leading-relaxed italic"
+                className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-400 leading-relaxed italic"
               >
                 Turning data and design into meaningful stories that inspire impactful decisions.
               </motion.p>
@@ -154,11 +154,11 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4 justify-center md:justify-start"
             >
               <motion.button
                 onClick={scrollToProjects}
-                className="group relative px-6 md:px-8 py-3 md:py-4 bg-gold-gradient text-black font-semibold rounded-lg overflow-hidden transition-all duration-300"
+                className="group relative px-6 md:px-8 py-3 md:py-4 bg-gold-gradient text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 text-sm md:text-base"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -174,7 +174,7 @@ const Hero = () => {
               
               <motion.button
                 onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 md:px-8 py-3 md:py-4 border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 rounded-lg font-semibold relative overflow-hidden group"
+                className="px-6 md:px-8 py-3 md:py-4 border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 rounded-lg font-semibold relative overflow-hidden group text-sm md:text-base"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -197,7 +197,7 @@ const Hero = () => {
               scale: showProfile ? 1 : 0.8 
             }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="flex justify-center lg:justify-end mb-8 lg:mb-0"
+            className="flex justify-center md:justify-end mb-6 md:mb-0"
           >
             <div className="coin-container">
               {/* Loading Skeleton */}

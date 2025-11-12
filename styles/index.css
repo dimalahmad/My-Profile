@@ -17,7 +17,7 @@
     overflow-y: auto !important;
     width: 100%;
     max-width: 100vw;
-    height: auto;
+    height: 100%;
   }
   
   body {
@@ -28,13 +28,19 @@
     max-width: 100vw;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    height: auto;
+    height: 100%;
     min-height: 100vh;
   }
   
   /* Force scroll to always be enabled */
   html, body {
     position: relative;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   
   /* Prevent any element from blocking scroll */
@@ -53,6 +59,8 @@
     contain: layout;
     /* Force render immediately */
     will-change: auto;
+    /* Scroll margin for navbar offset */
+    scroll-margin-top: 100px;
   }
   
   /* Ensure content is always visible and scrollable - Set explicit heights to prevent scroll freeze */
@@ -128,7 +136,7 @@
   }
   
   footer {
-    min-height: 20vh;
+    margin-top: auto;
     display: block;
     visibility: visible;
   }
@@ -269,7 +277,7 @@
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 md:px-8 lg:px-12 xl:px-6;
   }
   
   .glass-effect {
@@ -368,16 +376,24 @@
   margin: auto;
 }
 
-/* Desktop - Larger coin size */
+/* Tablet/iPad - Medium coin size */
 @media (min-width: 768px) {
   .coin-container {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
 }
 
-/* Large desktop - Even larger coin size */
+/* Large tablet/iPad landscape - Slightly larger */
 @media (min-width: 1024px) {
+  .coin-container {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Desktop - Even larger coin size */
+@media (min-width: 1280px) {
   .coin-container {
     width: 350px;
     height: 350px;
@@ -407,15 +423,24 @@
   border: 3px solid #d4af37;
 }
 
-/* Desktop - Larger border and shadow for bigger coin */
+/* Tablet/iPad - Medium border and shadow */
 @media (min-width: 768px) {
   .side {
-    border: 4px solid #d4af37;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+    border: 3px solid #d4af37;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
   }
 }
 
+/* Large tablet/iPad landscape - Slightly larger border */
 @media (min-width: 1024px) {
+  .side {
+    border: 4px solid #d4af37;
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
+  }
+}
+
+/* Desktop - Even larger border and shadow */
+@media (min-width: 1280px) {
   .side {
     border: 5px solid #d4af37;
     box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
@@ -426,14 +451,22 @@
   box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
 }
 
-/* Desktop hover effects */
+/* Tablet/iPad hover effects */
 @media (min-width: 768px) {
   .side:hover {
-    box-shadow: 0 0 50px rgba(212, 175, 55, 0.7);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.7);
   }
 }
 
+/* Large tablet/iPad landscape hover effects */
 @media (min-width: 1024px) {
+  .side:hover {
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/* Desktop hover effects */
+@media (min-width: 1280px) {
   .side:hover {
     box-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
   }

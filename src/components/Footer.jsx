@@ -5,8 +5,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-gray-800 py-8">
-      <div className="container-custom">
+    <footer className="bg-black/30 backdrop-blur-sm border-t border-white/10 pt-8 pb-8">
+      <div className="container-custom max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           variants={fadeIn("up", 0.1)}
           initial="hidden"
@@ -16,7 +16,7 @@ const Footer = () => {
           {/* Copyright */}
           <motion.p
             variants={fadeIn("up", 0.2)}
-            className="text-gray-400 text-sm md:text-base"
+            className="text-gray-400 text-sm text-center"
           >
             © {currentYear} <span className="text-gold font-medium">Dimal Karim Ahmad</span> — All Rights Reserved
           </motion.p>
@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Made with love */}
           <motion.p
             variants={fadeIn("up", 0.3)}
-            className="text-gray-500 text-xs md:text-sm flex items-center justify-center space-x-1"
+            className="text-gray-400 text-sm flex items-center justify-center space-x-1 text-center"
           >
             <span>Made with</span>
             <motion.span
