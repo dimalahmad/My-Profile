@@ -142,11 +142,11 @@ const Organizations = () => {
     },
     {
       id: 9,
-      position: 'Participant (Competitive Programming Division)',
+      position: 'Participant (Software Development Division)',
       organization: 'Kontingen UGM - GEMASTIK XVII',
       period: 'Juni 2024 · 1 month',
-      description: 'Represented Universitas Gadjah Mada in the National Student Competition in Technology, Information, and Communication (GEMASTIK XVII), focusing on algorithmic problem solving and teamwork.',
-      skills: ['Competitive Programming', 'Algorithm Design', 'Teamwork', 'Problem Solving', 'National Competition'],
+      description: 'Selected as a delegate for GEMASTIK XVII representing UGM in the Product Development Division, focusing on data-driven innovation and human-centered solutions.',
+      skills: ['Product Development', 'Innovation', 'Design Thinking', 'Team Collaboration', 'UX/UI'],
       images: [
         { src: '/assets/organizations/gemastik-2024-1.png', alt: 'GEMASTIK 2024 1' }
       ],
@@ -154,7 +154,7 @@ const Organizations = () => {
     },
     {
       id: 10,
-      position: 'Participant (Product Development Division)',
+      position: 'Participant (Software Development Division)',
       organization: 'Kontingen UGM - GEMASTIK XVIII',
       period: 'Agustus 2025 · 1 month',
       description: 'Selected as a delegate for GEMASTIK XVIII representing UGM in the Product Development Division, focusing on data-driven innovation and human-centered solutions.',
@@ -166,7 +166,7 @@ const Organizations = () => {
     },
     {
       id: 11,
-      position: 'Participant (Innovation and Entrepreneurship)',
+      position: 'Participant (Educational Digital Technology Innovation Division)',
       organization: 'Kontingen UGM - LIDM 2025',
       period: 'September 2025 · 1 month',
       description: 'Representing Universitas Gadjah Mada in LIDM 2025, emphasizing technology-driven innovation, entrepreneurship, and digital learning transformation.',
@@ -178,7 +178,7 @@ const Organizations = () => {
     },
     {
       id: 12,
-      position: 'Finalist',
+      position: 'Finalist (Software Development)',
       organization: 'Code 2024 Competition',
       period: 'Agustus 2024 · 1 month',
       description: 'Achieved finalist position in the Code 2024 competition, showcasing programming and problem-solving capabilities through analytical and creative solutions.',
