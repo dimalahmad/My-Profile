@@ -139,6 +139,55 @@ const Organizations = () => {
       socialLinks: {
         instagram: 'https://www.instagram.com/series.ugm/'
       }
+    },
+    {
+      id: 9,
+      position: 'Participant (Competitive Programming Division)',
+      organization: 'Kontingen UGM - GEMASTIK XVII',
+      period: 'Juni 2024 · 1 month',
+      description: 'Represented Universitas Gadjah Mada in the National Student Competition in Technology, Information, and Communication (GEMASTIK XVII), focusing on algorithmic problem solving and teamwork.',
+      skills: ['Competitive Programming', 'Algorithm Design', 'Teamwork', 'Problem Solving', 'National Competition'],
+      images: [
+        { src: '/assets/organizations/gemastik-2024-1.png', alt: 'GEMASTIK 2024 1' }
+      ],
+      socialLinks: {}
+    },
+    {
+      id: 10,
+      position: 'Participant (Product Development Division)',
+      organization: 'Kontingen UGM - GEMASTIK XVIII',
+      period: 'Agustus 2025 · 1 month',
+      description: 'Selected as a delegate for GEMASTIK XVIII representing UGM in the Product Development Division, focusing on data-driven innovation and human-centered solutions.',
+      skills: ['Product Development', 'Innovation', 'Design Thinking', 'Team Collaboration', 'UX/UI'],
+      images: [
+        { src: '/assets/organizations/gemastik-2025-1.png', alt: 'GEMASTIK 2025 1' }
+      ],
+      socialLinks: {}
+    },
+    {
+      id: 11,
+      position: 'Participant (Innovation and Entrepreneurship)',
+      organization: 'Kontingen UGM - LIDM 2025',
+      period: 'September 2025 · 1 month',
+      description: 'Representing Universitas Gadjah Mada in LIDM 2025, emphasizing technology-driven innovation, entrepreneurship, and digital learning transformation.',
+      skills: ['Innovation', 'Entrepreneurship', 'Education Technology', 'Research', 'Presentation'],
+      images: [
+        { src: '/assets/organizations/lidm-2025-1.png', alt: 'LIDM 2025 1' }
+      ],
+      socialLinks: {}
+    },
+    {
+      id: 12,
+      position: 'Finalist',
+      organization: 'Code 2024 Competition',
+      period: 'Agustus 2024 · 1 month',
+      description: 'Achieved finalist position in the Code 2024 competition, showcasing programming and problem-solving capabilities through analytical and creative solutions.',
+      skills: ['Programming', 'Problem Solving', 'Data Analysis', 'Competition', 'Creativity'],
+      images: [
+        { src: '/assets/organizations/code-2024-1.png', alt: 'Code 2024 1' },
+        { src: '/assets/organizations/code-2024-2.png', alt: 'Code 2024 2' , link: 'https://www.instagram.com/p/C_S72Z5TdeH/?img_index=2' }
+      ],
+      socialLinks: {}
     }
   ];
 
@@ -231,7 +280,26 @@ const Organizations = () => {
             const totalImages = org.images.length;
 
             return (
-              <motion.div
+              <>
+                {/* Separator before Competition entries */}
+                {index === 8 && (
+                  <motion.div
+                    key={`separator-${org.id}`}
+                    variants={fadeIn("down", 0.1)}
+                    className="col-span-1 md:col-span-2 mb-4 md:mb-8"
+                  >
+                    <div className="flex items-center justify-center mb-6 md:mb-8">
+                      <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-24 md:w-32"></div>
+                      <div className="mx-4 w-2 h-2 md:w-3 md:h-3 bg-gold rounded-full"></div>
+                      <h3 className="text-2xl md:text-3xl font-heading font-bold text-gradient-premium px-4">
+                        Competition & Delegation
+                      </h3>
+                      <div className="mx-4 w-2 h-2 md:w-3 md:h-3 bg-gold rounded-full"></div>
+                      <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent w-24 md:w-32"></div>
+                    </div>
+                  </motion.div>
+                )}
+                <motion.div
                 key={org.id}
                 variants={fadeIn("up", index * 0.1)}
                 whileHover={{ scale: 1.02 }}
@@ -433,6 +501,7 @@ const Organizations = () => {
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </motion.div>
+              </>
             );
           })}
         </motion.div>

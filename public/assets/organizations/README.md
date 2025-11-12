@@ -43,6 +43,19 @@ Berdasarkan konfigurasi di `src/components/Organizations.jsx`, file gambar harus
 2. `series-2.jpg`
 3. `series-3.jpg`
 
+### Kontingen UGM - GEMASTIK XVII
+1. `gemastik-2024-1.jpg`
+2. `gemastik-2024-2.jpg`
+
+### Kontingen UGM - GEMASTIK XVIII
+1. `gemastik-2025-1.jpg`
+
+### Kontingen UGM - LIDM 2025
+1. `lidm-2025-1.jpg`
+
+### Code 2024 Competition
+1. `code-2024-1.jpg`
+
 ## Catatan
 
 - Format gambar yang didukung: JPG, PNG, WebP
