@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { fadeIn, textVariant, zoomIn } from '../utils/motion';
+import { generateCVPDF } from '../utils/generateCV';
 
 const Hero = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -28,6 +29,15 @@ const Hero = () => {
     const element = document.querySelector('#projects');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleDownloadCV = async () => {
+    try {
+      await generateCVPDF();
+    } catch (error) {
+      console.error('Error generating CV:', error);
+      alert('Failed to generate CV. Please try again.');
     }
   };
 
@@ -157,12 +167,12 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4 pb-16 md:pb-0 justify-center md:justify-start"
             >
               <motion.button
-                onClick={scrollToProjects}
+                onClick={handleDownloadCV}
                 className="group relative px-6 md:px-8 py-3 md:py-4 bg-gold-gradient text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 text-sm md:text-base"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">View My Work</span>
+                <span className="relative z-10">Download CV</span>
                 <motion.div
                   className="absolute inset-0 bg-gold-light"
                   initial={{ x: '-100%' }}
@@ -173,12 +183,12 @@ const Hero = () => {
               </motion.button>
               
               <motion.button
-                onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' })}
                 className="px-6 md:px-8 py-3 md:py-4 border-2 border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 rounded-lg font-semibold relative overflow-hidden group text-sm md:text-base"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">Let's Connect</span>
+                <span className="relative z-10">View My Work</span>
                 <motion.div
                   className="absolute inset-0 bg-gold"
                   initial={{ scale: 0 }}
