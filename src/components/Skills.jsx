@@ -93,7 +93,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '100vh' }}>
+    <section id="skills" className="py-12 md:py-16 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '100vh' }}>
       {/* Parallax Background Elements */}
       <div className="absolute inset-0">
         <motion.div

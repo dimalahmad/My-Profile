@@ -168,7 +168,7 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="py-20 md:py-28 relative overflow-x-hidden overflow-y-visible" 
+      className="py-12 md:py-16 relative overflow-x-hidden overflow-y-visible" 
       style={{ 
         background: 'linear-gradient(180deg, #000000 0%, #1a1a1a 100%)',
         minHeight: '100vh' 
@@ -194,7 +194,7 @@ const Projects = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-24">
+      <div className="container-custom relative z-10 py-6 md:py-8 px-4 sm:px-6 md:px-12 lg:px-24">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0 }}

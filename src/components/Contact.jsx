@@ -73,7 +73,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="pt-16 pb-24 md:pt-20 md:pb-28 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '70vh' }}>
+    <section id="contact" className="pt-12 pb-16 md:pt-14 md:pb-20 relative overflow-x-hidden overflow-y-visible" style={{ backgroundColor: '#111111', minHeight: '70vh' }}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div

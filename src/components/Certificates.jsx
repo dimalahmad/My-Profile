@@ -1,11 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn, staggerContainer } from '../utils/motion';
-import { X, FileText } from 'lucide-react';
+import { X, FileText, ExternalLink } from 'lucide-react';
 
 const Certificates = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Deteksi mobile device dan tablet (termasuk iPad)
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+      // Menggunakan breakpoint 1024px untuk mencakup iPad (768px - 1024px)
+      const isSmallScreen = window.innerWidth < 1024;
+      setIsMobile(isMobileDevice || isSmallScreen);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const certificates = [
     {
@@ -125,10 +141,10 @@ const Certificates = () => {
     setPdfLoading(true);
     document.body.style.overflow = 'hidden';
     
-    // Auto-hide loading setelah 2 detik (fallback jika onLoad tidak trigger)
+    // Auto-hide loading setelah 1 detik untuk mobile (fallback jika onLoad tidak trigger)
     setTimeout(() => {
       setPdfLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
   const closeModal = () => {
@@ -139,7 +155,7 @@ const Certificates = () => {
 
   return (
     <>
-      <section id="certificates" className="py-20 md:py-28" style={{ backgroundColor: '#101010', minHeight: '100vh' }}>
+      <section id="certificates" className="py-12 md:py-16" style={{ backgroundColor: '#101010', minHeight: '100vh' }}>
         <div className="container-custom px-6 md:px-12 lg:px-24 relative z-10">
           <motion.div
             variants={staggerContainer(0.1, 0.1)}
@@ -313,35 +329,73 @@ const Certificates = () => {
               <div className="flex-1 overflow-hidden relative bg-dark-gray/30" style={{ minHeight: '500px', height: '100%' }}>
                 {selectedCertificate.pdfPath ? (
                   <>
-                    {/* Loading Indicator */}
-                    {pdfLoading && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-dark-gray/80 z-10">
-                        <div className="text-center">
-                          <div className="w-12 h-12 border-4 border-gold/30 border-t-gold rounded-full animate-spin mx-auto mb-4"></div>
-                          <p className="text-gold text-sm">Memuat PDF...</p>
+                    {/* Mobile View - Direct PDF Link */}
+                    {isMobile ? (
+                      <div className="flex flex-col items-center justify-center h-full p-6 md:p-8">
+                        <div className="text-center mb-6">
+                          <FileText className="w-20 h-20 text-gold/70 mx-auto mb-4" strokeWidth={1.5} />
+                          <h4 className="text-xl font-semibold text-white mb-2">
+                            {selectedCertificate.name}
+                          </h4>
+                          <p className="text-gray-400 text-sm mb-6">
+                            PDF akan dibuka di tab baru untuk tampilan yang lebih baik
+                          </p>
                         </div>
+                        
+                        <motion.a
+                          href={selectedCertificate.pdfPath}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 px-6 py-4 bg-gold text-black font-semibold rounded-lg hover:bg-gold-light transition-all duration-300 shadow-lg"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                          <span>Buka PDF</span>
+                        </motion.a>
+                        
+                        <p className="text-gray-500 text-xs mt-4 text-center">
+                          File: {selectedCertificate.pdfPath.split('/').pop()}
+                        </p>
                       </div>
+                    ) : (
+                      <>
+                        {/* Desktop View - Iframe */}
+                        {/* Loading Indicator */}
+                        {pdfLoading && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-dark-gray/80 z-10">
+                            <div className="text-center">
+                              <div className="w-12 h-12 border-4 border-gold/30 border-t-gold rounded-full animate-spin mx-auto mb-4"></div>
+                              <p className="text-gold text-sm">Memuat PDF...</p>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* PDF Viewer - Iframe untuk desktop */}
+                        <iframe
+                          key={`pdf-${selectedCertificate.id}`}
+                          src={`${selectedCertificate.pdfPath}#toolbar=0&navpanes=0&scrollbar=0&zoom=page-fit`}
+                          className="w-full h-full border-0"
+                          title={`${selectedCertificate.name} Certificate`}
+                          style={{ 
+                            height: '100%',
+                            width: '100%',
+                            opacity: pdfLoading ? 0 : 1,
+                            transition: 'opacity 0.2s ease-in-out',
+                            minHeight: '500px',
+                            display: 'block'
+                          }}
+                          onLoad={() => {
+                            setPdfLoading(false);
+                          }}
+                          onError={() => {
+                            setPdfLoading(false);
+                          }}
+                          allow="fullscreen"
+                          loading="eager"
+                        />
+                      </>
                     )}
-                    
-                    {/* PDF Viewer - Iframe */}
-                    <iframe
-                      key={`pdf-${selectedCertificate.id}`}
-                      src={`${selectedCertificate.pdfPath}#toolbar=0&navpanes=0&scrollbar=0&zoom=page-fit`}
-                      className="w-full h-full border-0"
-                      title={`${selectedCertificate.name} Certificate`}
-                      style={{ 
-                        height: '100%',
-                        width: '100%',
-                        display: pdfLoading ? 'none' : 'block',
-                        minHeight: '500px'
-                      }}
-                      onLoad={() => {
-                        setTimeout(() => {
-                          setPdfLoading(false);
-                        }, 500);
-                      }}
-                      allow="fullscreen"
-                    />
                   </>
                 ) : (
                   <div className="flex items-center justify-center h-full bg-dark-gray/50">
