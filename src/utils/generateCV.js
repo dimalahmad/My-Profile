@@ -334,9 +334,9 @@ const drawRoundedBox = (doc, x, y, width, height, goldRgb, fill = false) => {
 };
 
 // Helper function to add section header with modern design (full width gold background)
-const addSectionHeader = (doc, text, x, y, goldRgb, pageHeight, margin, pageWidth, isLeftColumn = false) => {
-  // Check if we need new page
-  if (checkPageBreak(doc, y, 15, pageHeight, margin)) {
+const addSectionHeader = (doc, text, x, y, goldRgb, pageHeight, margin, pageWidth, isLeftColumn = false, skipPageCheck = false) => {
+  // Check if we need new page (skip for first page to avoid gap)
+  if (!skipPageCheck && checkPageBreak(doc, y, 15, pageHeight, margin)) {
     y = addNewPage(doc, pageWidth, pageHeight, margin, goldRgb);
     // Redraw divider on new page
     if (!isLeftColumn) {
@@ -470,7 +470,7 @@ export const generateCVPDF = async () => {
 
   // Profile Section with box
   const profileStartY = leftY;
-  leftY = addSectionHeader(doc, 'PROFILE', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true);
+  leftY = addSectionHeader(doc, 'PROFILE', leftColX, leftY, goldRgb, pageHeight, margin, pageWidth, true, true);
   
   // Add subtle background for profile content
   doc.setFillColor(250, 250, 250);
@@ -514,12 +514,12 @@ export const generateCVPDF = async () => {
   doc.setTextColor(40, 40, 40);
   
   const contactItems = [
-    { label: 'Email:', value: profileData.email, icon: '✉' },
-    { label: 'Location:', value: profileData.location, icon: '📍' },
-    { label: 'LinkedIn:', value: profileData.linkedin, icon: '💼' },
-    { label: 'GitHub:', value: profileData.github.replace('https://', ''), icon: '💻' },
-    { label: 'Portfolio:', value: profileData.portfolio.replace('https://', '').replace('/', ''), icon: '🌐' },
-    { label: 'Status:', value: profileData.status, icon: '✅' }
+    { label: 'Email:', value: profileData.email },
+    { label: 'Location:', value: profileData.location },
+    { label: 'LinkedIn:', value: profileData.linkedin },
+    { label: 'GitHub:', value: profileData.github.replace('https://', '') },
+    { label: 'Portfolio:', value: profileData.portfolio.replace('https://', '').replace('/', '') },
+    { label: 'Status:', value: profileData.status }
   ];
   
   contactItems.forEach((item, idx) => {
@@ -533,14 +533,17 @@ export const generateCVPDF = async () => {
       doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
     }
     
-    // Icon
-    doc.setFontSize(7);
-    doc.text(item.icon, leftColX, leftY);
+    // Gold bullet point
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
+    doc.text('•', leftColX, leftY);
     
     doc.setFont('helvetica', 'bold');
-    doc.text(item.label, leftColX + 4, leftY);
+    doc.setTextColor(40, 40, 40);
+    doc.text(item.label, leftColX + 3, leftY);
     doc.setFont('helvetica', 'normal');
-    const labelWidth = doc.getTextWidth(item.label) + 4;
+    const labelWidth = doc.getTextWidth(item.label) + 3;
     const valueX = leftColX + labelWidth + 2;
     const valueWidth = leftColWidth - labelWidth - 2;
     const valueLines = doc.splitTextToSize(item.value, valueWidth);
@@ -590,16 +593,21 @@ export const generateCVPDF = async () => {
   doc.setFontSize(6.5);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(40, 40, 40);
-  const valueIcons = ['🎯', '📊', '🚀', '🎨', '🤝', '🔄'];
   profileData.coreValues.forEach((value, idx) => {
     if (idx > 0 && idx % 2 === 0) leftY += 2;
     const xPos = idx % 2 === 0 ? leftColX : leftColX + leftColWidth / 2 + 2;
     if (idx % 2 === 0 && idx > 0) leftY += 3.5;
     
-    // Icon
-    doc.setFontSize(7);
-    doc.text(valueIcons[idx] || '•', xPos, leftY);
-    doc.text(value, xPos + 4, leftY);
+    // Gold bullet point
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
+    doc.text('•', xPos, leftY);
+    
+    doc.setFontSize(6.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 40, 40);
+    doc.text(value, xPos + 3, leftY);
     
     if (idx % 2 === 1) leftY += 3.5;
   });
@@ -622,12 +630,12 @@ export const generateCVPDF = async () => {
   doc.roundedRect(leftColX - 1, leftY - 2, leftColWidth + 2, 1, 0.5, 0.5, 'F');
   
   const skillCategories = [
-    { name: 'Programming', skills: skillsData.programming, icon: '💻' },
-    { name: 'Frameworks', skills: skillsData.frameworks, icon: '⚛️' },
-    { name: 'Design', skills: skillsData.design, icon: '🎨' },
-    { name: 'Data & Analytics', skills: skillsData.data, icon: '📈' },
-    { name: 'Tools', skills: skillsData.tools, icon: '🛠️' },
-    { name: 'Product & Research', skills: skillsData.product.slice(0, 5), icon: '🔬' }
+    { name: 'Programming', skills: skillsData.programming },
+    { name: 'Frameworks', skills: skillsData.frameworks },
+    { name: 'Design', skills: skillsData.design },
+    { name: 'Data & Analytics', skills: skillsData.data },
+    { name: 'Tools', skills: skillsData.tools },
+    { name: 'Product & Research', skills: skillsData.product.slice(0, 5) }
   ];
   
   skillCategories.forEach((category, idx) => {
@@ -641,17 +649,21 @@ export const generateCVPDF = async () => {
       doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
     }
     
-    // Category name with icon and gold accent
+    // Category name with gold bullet and accent
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
+    doc.text('•', leftColX, leftY);
+    
     doc.setFontSize(6.5);
-    doc.text(category.icon, leftColX, leftY);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(40, 40, 40);
-    doc.text(`${category.name}:`, leftColX + 4, leftY);
+    doc.text(`${category.name}:`, leftColX + 3, leftY);
     
     // Gold accent line
     doc.setDrawColor(goldRgb.r, goldRgb.g, goldRgb.b);
     doc.setLineWidth(0.2);
-    doc.line(leftColX, leftY + 1.5, leftColX + 15, leftY + 1.5);
+    doc.line(leftColX, leftY + 1.5, leftColX + 20, leftY + 1.5);
     
     leftY += 3.5;
     doc.setFont('helvetica', 'normal');
@@ -691,17 +703,21 @@ export const generateCVPDF = async () => {
       doc.line(leftColX + leftColWidth + (margin / 2), margin, leftColX + leftColWidth + (margin / 2), pageHeight - margin);
     }
     
-    // Certificate icon
-    doc.setFontSize(7);
-    doc.text('🏆', leftColX, leftY);
+    // Gold bullet point
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(goldRgb.r, goldRgb.g, goldRgb.b);
+    doc.text('•', leftColX, leftY);
     
     doc.setFont('helvetica', 'bold');
-    doc.text(`${cert.name}`, leftColX + 4, leftY);
+    doc.setFontSize(6.5);
+    doc.setTextColor(40, 40, 40);
+    doc.text(`${cert.name}`, leftColX + 3, leftY);
     leftY += 3;
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(6);
     doc.setTextColor(80, 80, 80);
-    doc.text(`${cert.issuer} (${cert.year})`, leftColX + 6, leftY);
+    doc.text(`${cert.issuer} (${cert.year})`, leftColX + 5, leftY);
     leftY += 4;
   });
   
@@ -715,8 +731,9 @@ export const generateCVPDF = async () => {
   // Start right column at the same Y as left column to avoid gap
   let rightY = currentY;
 
-  // Education Section
-  rightY = addSectionHeader(doc, 'EDUCATION', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false);
+  // Education Section - start immediately without gap (same Y as left column)
+  // Use the same function as left column for consistency, skip page check for first page
+  rightY = addSectionHeader(doc, 'EDUCATION', rightColX, rightY, goldRgb, pageHeight, margin, pageWidth, false, true);
   
   educationData.forEach((edu, index) => {
     if (index > 0) {
